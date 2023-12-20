@@ -17,4 +17,7 @@ field_xpath_map = {
     "harvest_area" : "",
     "yield" : "",
     "production" : ""
+    
 }
+
+levels = ["Turkey", "NUTS1", "NUTS2 (26 Regions)", "NUTS3 (Province Level)"]
