@@ -3,107 +3,133 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import *
 import os
 import time
+import shutil
+import pandas as pd
 
-def get_bg(driver, name):
-    tim = time.time()
-    while time.time()-tim < 60:
-        try:
-            driver.find_element(By.XPATH, '//div[contains(text(), "TABLE")] | //span[contains(text(), "TABLE")]')
-            driver.execute_script("$find('ReportViewer1').exportReport('CSV');")
-            # keeps calling rename_and_move_csv_files until it returns True
-            # if it is false, sleep for 1 minute and call it again
-            if rename_and_move_csv_files('.', 'splay', name):
-                return
-        except JavascriptException:
-            time.sleep(3)
-            get_bg(driver, name)
-        except NoSuchElementException:
-            try:
-                driver.find_element(By.XPATH, "//div[text()='No Record Found']")
-                save_txt("Missing Data.txt", name)
-                return
-            except NoSuchElementException:
-                save_txt("err.txt", name)
-                time.sleep(0.5)
-        except TimeoutException:
-            save_txt("err.txt", name)
-            return
-        except NoSuchWindowException:
-            year = name.split("_")[0]
-            state = name.split("_")[1]
-            district = name.split("_")[2]
-            tehsil = name.split("_")[3]
-            crop = name.split("_")[4]
-            get_tehsil(year, state, district, tehsil, crop, None)
-    else:
-        save_txt("err.txt", name)
+
+import config
+
+table = config.table
+
+
+
+def crawl(driver, Year, State=None, District=None, Fertilizer=None, Crop=None):
+    driver.get("https://inputsurvey.dacnet.nic.in/districttables.aspx")
+
+    driver.find_element(By.XPATH, f'''//select[@ onchange="return ONChangeddlYear();"]//option[text()="{Year}"]''').click()
+
+    states = []
+    districts = []
+
+    if State is None:
+        select_element = driver.find_element(By.XPATH, f'''//select[@ onchange="return ONChangeddlState();"]''')
+        states = [option.text for option in select_element.find_elements(By.XPATH, './/option')]
+        print(states)
+        # select all first 
+        get_datapoint(Year, "all", "all", Fertilizer, Crop, driver)
+        for State in states:
+            get_datapoint(Year, State, District, Fertilizer, Crop, driver)
         return
-
-def get_datapoint(year, state, district, tehsil, crop, driver):
-    name = "_".join([year, state, district, tehsil.replace('\xa0', ""), crop])
-    if district == "all":
-        driver.get("https://inputsurvey.dacnet.nic.in/nationaltables.aspx")
-    elif tehsil == "all":
-        driver.get("https://inputsurvey.dacnet.nic.in/statetables.aspx")
     else:
-        driver.get("https://inputsurvey.dacnet.nic.in/districttables.aspx")
+        get_datapoint(Year, State, District, Fertilizer, Crop, driver)
 
-    driver.find_element(By.XPATH, f'''//select[contains(@onchange, "Year")]/option[text()="{year}"]''').click()
 
-    driver.find_element(By.XPATH, f'''//select[contains(@onchange, "State")]/option[text()="{state}"]''').click()
+    if District is None:
+        select_element = driver.find_element(By.XPATH, f'''//select[@ onchange="return OnChangeddlDistrict();"]''')
+        districts = [option.text for option in select_element.find_elements(By.XPATH, './/option')]
+        print(districts)
+        get_datapoint(Year, State, "all", "all", Crop, driver)
+        for District in districts:
+            get_datapoint(Year, State, District, Fertilizer, Crop, driver)
+        return
+    else:
+        get_datapoint(Year, State, District, Fertilizer, Crop, driver)
+
+def get_datapoint(year, state, district, fertilizer, crop,  driver):
+    if state == "all":
+        driver.get("https://inputsurvey.dacnet.nic.in/nationaltables.aspx")
+    elif district == "all":
+        driver.get("https://inputsurvey.dacnet.nic.in/statetables.aspx")
+    
+    select_year = driver.find_element(By.XPATH, f'''//select[contains(@onchange, "Year")]/option[text()="{year}"]''').click()
+
+    # select state
+    if state != "all":
+        driver.find_element(By.XPATH, f'''//select[contains(@onchange, "State")]/option[text()="{state}"]''').click()
 
     if district != "all":
         driver.find_element(By.XPATH, f'''//select[contains(@onchange, "District")]/option[text()="{district}"]''').click()
 
-    if tehsil != "all":
-        driver.find_element(By.XPATH, f'''//select[contains(@onchange, "Tehsil")]/option[text()='{tehsil}']''').click()
+    select_table = driver.find_element(By.XPATH, '//select[contains(@onchange, "Table")]/option[@value="7"]').click()
+    
+    time.sleep(0.5)
 
-    driver.find_element(By.XPATH, f'''//select[contains(@onchange, "SocialGroup")]/option[@value="4"]''').click()
-
-    driver.find_element(By.XPATH, f'''//select[contains(@onchange, "Tables")]/option[text()="{tables}"]''').click()
-
-    try:
-        driver.find_element(By.XPATH, f'''//select[contains(@onchange, "Crop")]/option[text()="{crop}"]''').click()
-    # if there is no such crop in district level
-    except NoSuchElementException:
-        save_txt("Missing Data.txt", name)
+    if crop == None:
+        select_element = driver.find_element(By.XPATH, f'''//select[@ onchange="return ONChangeddlCrop1();"]''')
+        crops = [option.text for option in select_element.find_elements(By.XPATH, './/option')]
+        for crop in crops:
+            get_datapoint(year, state, district, fertilizer, crop,  driver)
         return
-    driver.find_element(By.XPATH, f'''//input[@type="submit"]''').click()
-    get_bg(driver, name)
-    time.sleep(3)
+    else:  
+        select_crop = driver.find_element(By.XPATH, f'''//select[contains(@onchange, "Crop")]/option[text()="{crop}"]''').click()
 
-
-def get_(Year, State, District=None, Tehsil=None, Crop=None, driver=None):
-    driver.get("https://inputsurvey.dacnet.nic.in/statetables.aspx")
-
-    driver.find_element(By.XPATH, f'''//select[@ onchange="return ONChangeYear('Year');"]//option[text()="{Year}"]''').click()
-
-    driver.find_element(By.XPATH, f'''//select[@ onchange="return ONChangedState('State');"]//option[text()="{State}"]''').click()
-
-    if District is None:
-        select_element = driver.find_element(By.XPATH, f'''//select[@ onchange="return OnChangedDistrict('District');"]''')
-        districts = [option.text for option in select_element.find_elements(By.XPATH, './/option')]
-        print(districts)
-        get_crop(Year, State, "all", "all", Crop, driver)
-        for District in districts:
-            get_tehsil(Year, State, District, Tehsil, Crop, driver)
+    if fertilizer == None:
+        select_element = driver.find_element(By.XPATH, f'''//select[@ onchange="return ONChangeddlFetilizer();"]''')
+        fertilizers = [option.text for option in select_element.find_elements(By.XPATH, './/option')]
+        for fertilizer in fertilizers:
+            get_datapoint(year, state, district, fertilizer, crop,  driver)
         return
     else:
-        driver.find_element(By.XPATH, f'''//select[@ onchange="return OnChangedDistrict('District');"]//option[text()="{District}"]''').click()
+        select_fertilizer = driver.find_element(By.XPATH, f'''//select[contains(@onchange, "Fetilizer")]/option[text()="{fertilizer}"]''').click()
 
-    if Tehsil is None:
-        select_element = driver.find_element(By.XPATH, f'''//select[@ onchange="return ONChangedTehsil('Tehsil');"]''')
-        tehsils = [option.text for option in select_element.find_elements(By.XPATH, './/option')]
-        print(tehsils)
-        get_crop(Year, State, District, "all", Crop, driver)
-        for Tehsil in tehsils:
-            get_crop(Year, State, District, Tehsil, Crop, driver)
-        return
+    submit = driver.find_element(By.XPATH, f'''//input[@type="submit"]''').click()
+    time.sleep(1)
+
+    N = driver.find_element(By.XPATH, "/html/body/form/table/tbody/tr[2]/td/span/div/table/tbody/tr[4]/td[3]/div/div[1]/div/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[2]/td/table/tbody/tr[4]/td[8]/div/div/div/span[2]").text
+    P = driver.find_element(By.XPATH, "/html/body/form/table/tbody/tr[2]/td/span/div/table/tbody/tr[4]/td[3]/div/div[1]/div/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[2]/td/table/tbody/tr[4]/td[9]/div/div/div/span[2]").text
+    K = driver.find_element(By.XPATH, "/html/body/form/table/tbody/tr[2]/td/span/div/table/tbody/tr[4]/td[3]/div/div[1]/div/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td/table/tbody/tr[2]/td/table/tbody/tr[4]/td[11]/div/div/div/span[2]").text
+
+    name = "_".join([year, state, district, crop, fertilizer])
+    name += f"N{N}%P{P}%K{K}%".replace('\xa0', "")
+
+    download_data(driver, name)
+
+def download_data(driver, name):
+        driver.execute_script("$find('ReportViewer1').exportReport('CSV');")
+        time.sleep(0.5)
+        if rename_and_move_csv_files('.', 'table', name):
+            return 
+        
+        raise Exception("fail to download")
+
+def rename_and_move_csv_files(directory, keyword, new_name):
+    # 创建csv文件夹
+    tim = time.time()
+    while time.time()-tim < 5:
+        csv_directory = os.path.join(directory, 'csv')
+        os.makedirs(csv_directory, exist_ok=True)
+
+        # 遍历当前目录下的文件
+        for filename in os.listdir(directory):
+            if filename.endswith('.csv') and keyword in filename:
+                # 构造新的文件名
+                new_filename = new_name.replace('/', '&') + '.csv'
+                new_filename = new_filename.replace('"', '')
+
+                # 源文件路径
+                source_path = os.path.join(directory, filename)
+                # 目标文件路径
+                destination_path = os.path.join(csv_directory, new_filename)
+
+                if os.path.exists(destination_path):
+                    print(f"file {new_filename} already exists")
+                
+                # 重命名文件并移动到csv文件夹
+                time.sleep(0.5)
+                shutil.move(source_path, destination_path)
+                return True
     else:
-        get_crop(Year, State, District, Tehsil, Crop, driver)
-
-
-
+        return False
 
 def save_txt(filename, data):
     with open(filename, 'a', newline='') as file:

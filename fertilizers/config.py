@@ -20,4 +20,4 @@ prefs = {
 chrome_options.add_experimental_option("prefs", prefs)
 
 
-table = "TABLE 4A-USAGE OF DIFFERENT FERTILIZERS FOR DIFFERENT CROPS"
+table = "Table4A-Usage of different Fertilizerss for different Crops"
