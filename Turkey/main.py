@@ -1,7 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-import time
+from strategy import NonSubCrawler, SubCrawler
 
 import config
 import utils
@@ -35,13 +34,17 @@ def set_up(crop_type):
 
 
 def crawl(crop_type, level):
-    # select field (sown_area, harvest_area, yield, sown_area, production)
+    if crop_type == "Subprovince Level":
+        crawler = SubCrawler()
+    else:
+        crawler = NonSubCrawler(crop_type, level)
+    
     for xpath in field_xpath_map.values():
         if xpath == "":
             continue
-        # reload the current page
+        
         utils.reload_page_and_select_crop_type(driver, crop_type, crop_type_map)
-    
+
         page = 1
         total_index = 0
         page_maximum = driver.find_element(By.XPATH, "/html/body/div[1]/div[1]/div/div[3]/div[2]/div[1]/div/div[4]/div[2]/div/div[2]/div[2]/div[3]/div[1]/div/ul/li[3]/span").text
@@ -49,9 +52,9 @@ def crawl(crop_type, level):
         page_maximum = page_maximum.replace("/", "")
 
         while (page <= int(page_maximum)):
-            utils.change_page(driver, page)
+            crawler.change_page(driver, page)
             # select crop:
-            crop_table = utils.select_field_and_get_crop_table(driver, xpath, page, total_index)
+            crop_table = crawler.select_field_and_get_crop_table(driver, xpath, page, total_index)
             length = len(crop_table)
 
             for i in range(0,length):
@@ -61,54 +64,52 @@ def crawl(crop_type, level):
                 if crop_name == "<All>":
                     continue
 
-                select_crop_successful = utils.select_crop_and_unit(driver, i, page, total_index)
+                select_crop_successful = crawler.select_crop_and_unit(driver, i, page, total_index)
                 if not select_crop_successful:
                     utils.save_missing_crop_data(level, crop_name)
-                    utils.return_to_homepage(driver)
+                    crawler.return_to_homepage(driver)
                     continue
 
                 # select the indictor
-                utils.select_the_indictor(driver)
-                utils.select_all_years(driver)
-                select_all_regions_sucessful = utils.select_all_regions(driver, level)
+                crawler.select_the_indictor(driver)
+                crawler.select_all_years(driver)
+                select_all_regions_sucessful = crawler.select_all_regions(driver, level)
 
                 if not select_all_regions_sucessful:
                     utils.save_missing_crop_data(level, crop_name)
-                    utils.return_to_homepage(driver)
+                    crawler.return_to_homepage(driver)
                     continue
     
-                utils.generate_report(driver)
-                utils.return_to_homepage(driver)
+                crawler.generate_report(driver)
+                crawler.return_to_homepage(driver)
 
                 total_index += 1
 
-            utils.unclick_crop(driver, i+1, page, total_index)
+            crawler.unclick_crop(driver, i+1, page, total_index)
             page += 1
-
-            # search_input = driver.find_element(By.XPATH, "/html/body/div/div[1]/div/div[3]/div[2]/div[1]/div/div[4]/div[2]/div/div[2]/div[2]/div[1]/input")
-            # # send page number to the page_input
-            # search_input.send_keys(Keys.CONTROL + "a")  # select all things in the input
-            # search_input.clear()
-            # search_input.send_keys(Keys.ENTER)
-            # time.sleep(0.5)
 
         utils.rename_and_move_file(level, crop_type)
 
 
-    # # Close the browser window
-    # driver.quit()
 
-# level = "NUTS3 (Province Level)"
+level = "NUTS3 (Province Level)"
 driver = webdriver.Chrome()
 driver.implicitly_wait(5)
 
 
-if __name__ == "__main__":  
-    for level in levels: 
-        for crop_type in crop_type_map.keys():
-            set_up(crop_type)
-            crawl(crop_type, level)
-            utils.merge(level, crop_type)
+for level in levels: 
+    for crop_type in crop_type_map.keys():
+        set_up(crop_type)
+        crawl(crop_type, level)
+        utils.merge(level, crop_type)
+
+
+# if __name__ == "__main__":  
+#     for level in levels: 
+#         for crop_type in crop_type_map.keys():
+#             set_up(crop_type)
+#             crawl(crop_type, level)
+#             utils.merge(level, crop_type)
 
 # utils.rename_and_move_file(level)
 
