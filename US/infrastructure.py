@@ -26,12 +26,9 @@ def fetch(type, dic):
     if dic["Data_item"] == "":
         data_item = crop
     else:
-        data_item = dic["Data_item"] # config.data_item
+        data_item = crop + ", " + dic["Data_item"] # config.data_item
     
     prod_unit = dic["Prod_unit"]
-    # if dic["Irrigated"] != None:
-    #     irr = dic["Irrigated"] # if we want irrigated or non-irrigated data, this will label the final file with corresponding names
-
     
     if type == "production" and crop == "TOMATOES":
     # if type == "production" and "IRRIGATED" in data_item and "CENSUS" in source: 
@@ -46,63 +43,23 @@ def fetch(type, dic):
     elif type == "production":
         url += f"&short_desc={data_item} - PRODUCTION, MEASURED IN {prod_unit}"
 
+    print(url)
+
     response = requests.get(url)
 
     data = None
 
     if response.status_code == 200:
-        # 获取返回的数据
-        data = response.json()['data']  # 使用 .json() 方法解析 JSON 数据
+        # convert the returned data to json
+        data = response.json()['data']  
         return data
+    elif response.status_code == 400:
+        # no such data, query failed
+        return []
     else:
         raise RuntimeError(f"This request for {crop} in {year} is incorrect, please go to the website to check all fields")
 
-# 筛选出state级别数据
-def filterState(data):
-    return filterLevel(data, "STATE")
 
-# 筛选出county级别数据
-def filterCounty(data):
-    return filterLevel(data, "COUNTY")
-
-def filterLevel(data, level):
-    filteredData = myFilter(data, level)
-    df = buildDF(filteredData, level)
-    return df
-
-
-def myFilter(arr, level):
-    result = []
-    for ele in arr:
-        if ele["agg_level_desc"] == level:
-            result.append(ele)
-    return result
-
-
-#  拿到数据后，建立df
-def buildDF(arr, level):
-
-    header = []
-    if level == "STATE":
-        header = ["Program", "State", "Year", "Cropnm", "Area(Acre)"]
-    
-   
-    elif level == "COUNTY":
-        header = ["Program", "State", "Ag District", "County", "Year", "Cropnm", "Area(Acre)"]
-    
-    df = pd.DataFrame(columns= header)
-
-    # 添加新的行
-    for dp in arr:
-        if level == "STATE":
-           new_row = [dp['source_desc'], dp['state_name'], dp['year'], dp['commodity_desc'], dp['Value']]
-
-        elif level == "COUNTY":
-            new_row = [dp['source_desc'], dp['state_name'], dp['asd_desc'], dp['county_name'], dp['year'], dp['commodity_desc'], dp['Value']]
-        
-        df.loc[len(df)] = new_row
-
-    return df
 
 def merge(area, prod, level):
     rowsA = len(area)
@@ -114,11 +71,17 @@ def merge(area, prod, level):
         os.mkdir("CENSUS")
         os.mkdir("CENSUS/State_Level")
         os.mkdir("CENSUS/County_Level")
+        os.mkdir("CENSUS/State_Level/total")
+        os.mkdir("CENSUS/State_Level/irrigated")
+        os.mkdir("CENSUS/State_Level/non-irrigated")
 
     if not os.path.exists("SURVEY"):
         os.mkdir("SURVEY")
         os.mkdir("SURVEY/State_Level")
         os.mkdir("SURVEY/County_Level")
+        os.mkdir("SURVEY/State_Level/total")
+        os.mkdir("SURVEY/State_Level/irrigated")
+        os.mkdir("SURVEY/State_Level/non-irrigated")
 
     irr = ""
     if "IRRIGATED" in data_item and "NON-IRRIGATED" not in data_item:
