@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 
-import service
+from service import Service
 
 
 if __name__ == '__main__':
@@ -11,6 +11,7 @@ if __name__ == '__main__':
 
     print("Program starts")
 
+    
     for dic in dict_list:
         # if dic["Year"] == None:
         #     # traverse all years
@@ -19,7 +20,8 @@ if __name__ == '__main__':
         #         dic["Year"] = year
         #         fetchData(dic)
         # else:
-            service.fetchData(dic)
+            cur_service = Service(dic)
+            cur_service.fetchData()
     
     print("Program ends")
 
