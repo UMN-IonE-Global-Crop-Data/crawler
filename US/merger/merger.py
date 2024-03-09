@@ -19,7 +19,7 @@ class Merger:
         if "IRRIGATED" in self.data_item and "NON-IRRIGATED" not in self.data_item:
             self.irr = "-irr"
         elif "NON-IRRIGATED" in self.data_item:
-            self.irr = "-nonirr"
+            self.irr = "-non-irr"
 
     def merge(self, area_df: pd.DataFrame, prod_df: pd.DataFrame, yield_df: pd.DataFrame) -> None:
         pass
@@ -63,5 +63,8 @@ class Merger:
         
         if not os.path.exists(filepath):
             os.mkdir(filepath)
+
+        # the cropnm is default value, cannot distinguish one with another
+        # df['Cropnm'] = self.data_item
 
         df.to_csv(f"{filepath}/{filename}", index = False)

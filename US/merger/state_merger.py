@@ -9,7 +9,7 @@ class StateMerger(Merger):
     def __init__(self, input_dic) -> None:
         super().__init__(input_dic)
         self.level = "State"
-        self.filename = f"State_{self.year}_{self.data_item}{self.irr}.csv"
+        self.filename = f"State_{self.year}_{self.data_item}.csv"
     
 
     def merge(self, area_df: pd.DataFrame, prod_df: pd.DataFrame, yield_df: pd.DataFrame) -> None:

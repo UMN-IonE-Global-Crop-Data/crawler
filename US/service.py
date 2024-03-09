@@ -15,7 +15,6 @@ class Service:
         self.county_merger = CountyMerger(self.dic)
 
 
-
     def fetchData(self):
         # area data
         area_state, area_county = self.area_crawler.fetch()

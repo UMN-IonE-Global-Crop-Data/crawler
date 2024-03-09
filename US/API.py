@@ -11,17 +11,9 @@ if __name__ == '__main__':
 
     print("Program starts")
 
-    
     for dic in dict_list:
-        # if dic["Year"] == None:
-        #     # traverse all years
-        #     cur_year = int(datetime.now().strftime("%Y"))
-        #     for year in range(1998,cur_year):
-        #         dic["Year"] = year
-        #         fetchData(dic)
-        # else:
-            cur_service = Service(dic)
-            cur_service.fetchData()
+        cur_service = Service(dic)
+        cur_service.fetchData()
     
     print("Program ends")
 
