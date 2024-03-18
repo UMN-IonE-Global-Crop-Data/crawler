@@ -24,42 +24,51 @@ class Merger:
     def merge(self, area_df: pd.DataFrame, prod_df: pd.DataFrame, yield_df: pd.DataFrame) -> None:
         pass
 
-    def merge_area_prod(area_df: pd.DataFrame, prod_df: pd.DataFrame) -> pd.DataFrame:
+    def merge_area_prod(self, area_df: pd.DataFrame, prod_df: pd.DataFrame) -> pd.DataFrame:
         pass
 
     def merge_yield(self, area_prod_df: pd.DataFrame, yield_df: pd.DataFrame) -> pd.DataFrame:
         pass
 
-    
+
     def make_folder_structure(self):
         if not os.path.exists("CENSUS"):
             os.mkdir("CENSUS")
-            os.mkdir("CENSUS/State_Level")
-            os.mkdir("CENSUS/County_Level")
-            os.mkdir("CENSUS/State_Level/total")
-            os.mkdir("CENSUS/State_Level/irrigated")
-            os.mkdir("CENSUS/State_Level/non-irrigated")
-            os.mkdir("CENSUS/County_Level/total")
-            os.mkdir("CENSUS/County_Level/irrigated")
-            os.mkdir("CENSUS/County_Level/non-irrigated")
+
+            os.mkdir("CENSUS/total")
+            os.mkdir("CENSUS/irrigated")
+            os.mkdir("CENSUS/non-irrigated")
+
+            os.mkdir("CENSUS/total/State_Level")
+            os.mkdir("CENSUS/irrigated/State_Level")
+            os.mkdir("CENSUS/non-irrigated/State_Level")
+
+            os.mkdir("CENSUS/total/County_Level")
+            os.mkdir("CENSUS/irrigated/County_Level")
+            os.mkdir("CENSUS/non-irrigated/County_Level")
 
 
         if not os.path.exists("SURVEY"):
             os.mkdir("SURVEY")
-            os.mkdir("SURVEY/State_Level")
-            os.mkdir("SURVEY/County_Level")
-            os.mkdir("SURVEY/State_Level/total")
-            os.mkdir("SURVEY/State_Level/irrigated")
-            os.mkdir("SURVEY/State_Level/non-irrigated")
-            os.mkdir("SURVEY/County_Level/total")
-            os.mkdir("SURVEY/County_Level/irrigated")
-            os.mkdir("SURVEY/County_Level/non-irrigated")
+
+            os.mkdir("SURVEY/total")
+            os.mkdir("SURVEY/irrigated")
+            os.mkdir("SURVEY/non-irrigated")
+
+            os.mkdir("SURVEY/total/State_Level")
+            os.mkdir("SURVEY/irrigated/State_Level")
+            os.mkdir("SURVEY/non-irrigated/State_Level")
+
+            os.mkdir("SURVEY/total/County_Level")
+            os.mkdir("SURVEY/irrigated/County_Level")
+            os.mkdir("SURVEY/non-irrigated/County_Level")
+
 
     def save_file(self, df, filename, level):
         if self.irr != "":
-            filepath = f"{self.source}/{level}_Level/{self.irr[1:]}igated/{self.data_item}"
+            filepath = f"{self.source}/{self.irr[1:]}igated/{level}_Level/{self.data_item}"
         else:
-            filepath = f"{self.source}/{level}_Level/total/{self.data_item}"
+            filepath = f"{self.source}/total/{level}_Level/{self.data_item}"
         
         if not os.path.exists(filepath):
             os.mkdir(filepath)

@@ -3,8 +3,6 @@ import numpy as np
 
 from merger.merger import Merger, EMPTY_DF
 
-
-
 class StateMerger(Merger):
     def __init__(self, input_dic) -> None:
         super().__init__(input_dic)
@@ -14,6 +12,11 @@ class StateMerger(Merger):
 
     def merge(self, area_df: pd.DataFrame, prod_df: pd.DataFrame, yield_df: pd.DataFrame) -> None:
         area_prod_df = self.merge_area_prod(area_df, prod_df)
+        
+        # no production data provided
+        if area_prod_df.empty:
+            return
+       
         area_prod_yield_df = self.merge_yield(area_prod_df, yield_df)
 
         if not area_prod_df.empty and not area_prod_yield_df.empty:
@@ -23,10 +26,10 @@ class StateMerger(Merger):
     def merge_area_prod(self, area_df: pd.DataFrame, prod_df: pd.DataFrame) -> pd.DataFrame:
         area_row = len(area_df)
         prod_row = len(prod_df)
-        
+
+        # make folders
         self.make_folder_structure()
 
-        
         # census里面没有irr/non-irr production数据，直接返回
         if area_row != 0 and prod_row == 0:
             self.save_file(area_df, self.filename, self.level)
@@ -57,7 +60,11 @@ class StateMerger(Merger):
         
         # guard clause, in case area_row is different from prod_row
         if area_prod_row != yield_row:
-            error_filename = f"error-{self.filename}"
+            self.error_handler.handle_error(yield_row)
+
+
+        if area_prod_row != len(new_yield_df):
+            error_filename = f"error-{self.source}-{self.filename}"
             print(f"area, production, and yield have different rows, please check the file {error_filename} in the folder to fix the problem")
             
             yield_header = ["Program", "State","Year", "Cropnm", "Area(Acre)"]
