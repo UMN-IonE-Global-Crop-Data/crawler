@@ -17,103 +17,68 @@ class Crawler:
         self.prod_unit = input_dic["Prod_unit"]
 
 
-    def query_API(self) -> list:
+    def create_url(self):
         pass
+
+    def query_API(self) -> list:
+        url = self.create_url()
+        response = requests.get(url)
+
+        if response.status_code == 200:
+            # convert the returned data to json
+            data = response.json()['data']  
+            return data
+        elif response.status_code == 400:
+            # no such data, query failed
+            print(f"{url} not found")
+            return []
+        else:
+            raise RuntimeError(f"This request for {self.crop} in {self.year} is incorrect, please go to the website to check all fields")
+
+    def fetch(self) -> list[pd.DataFrame]:
+        data =  self.query_API()
+        state = state_filter.filter(data)
+        county = county_filter.filter(data)
+        return [state,county]
 
 
 class AreaCrawler(Crawler):
     def __init__(self, input_dic) -> None:
          super().__init__(input_dic)
 
-    def fetch(self) -> list[pd.DataFrame]:
-        data = self.query_API()
-        state = state_filter.filter(data)
-        county = county_filter.filter(data)
-        return [state,county]
-
-
-    def query_API(self) -> list:
+    def create_url(self) -> str:
         url = f"https://quickstats.nass.usda.gov/api/api_GET/?key={self.api_key}" \
         f"&source_desc={self.source}&sector_desc={self.sector}&group_desc={self.group}" \
         f"&commodity_desc={self.crop}&domain_desc={self.domain_desc}" \
         f"&year={self.year}&reference_period_desc=YEAR&format=JSON" \
         f"&short_desc={self.data_item} - ACRES HARVESTED"
 
-        response = requests.get(url)
-
-        if response.status_code == 200:
-            # convert the returned data to json
-            data = response.json()['data']  
-            return data
-        elif response.status_code == 400:
-            # no such data, query failed
-            return []
-        else:
-            raise RuntimeError(f"This request for {self.crop} in {self.year} is incorrect, please go to the website to check all fields")
-
+        return url
 
 
 class ProductionCrawler(Crawler):
     def __init__(self, input_dic) -> None:
         super().__init__(input_dic)
 
-
-    def fetch(self) -> list[pd.DataFrame]:
-        data =  self.query_API()
-        state = state_filter.filter(data)
-        county = county_filter.filter(data)
-        return [state,county]
-
-
-    def query_API(self) -> list:
+    def create_url(self) -> str:
         url = f"https://quickstats.nass.usda.gov/api/api_GET/?key={self.api_key}" \
         f"&source_desc={self.source}&sector_desc={self.sector}&group_desc={self.group}" \
         f"&commodity_desc={self.crop}&domain_desc={self.domain_desc}" \
         f"&year={self.year}&reference_period_desc=YEAR&format=JSON" \
         f"&short_desc={self.data_item} - PRODUCTION, MEASURED IN {self.prod_unit}"
 
-        response = requests.get(url)
-
-        if response.status_code == 200:
-            # convert the returned data to json
-            data = response.json()['data']  
-            return data
-        elif response.status_code == 400:
-            # no such data, query failed
-            return []
-        else:
-            raise RuntimeError(f"This request for {self.crop} in {self.year} is incorrect, please go to the website to check all fields")
-        
+        return url
 
 
 class YieldCrawler(Crawler):
     def __init__(self, input_dic) -> None:
         super().__init__(input_dic)
 
-    
-    def fetch(self) -> list[pd.DataFrame]:
-        data =  self.query_API()
-        state = state_filter.filter(data)
-        county = county_filter.filter(data)
-        return [state,county]
-    
-
-    def query_API(self) -> list:
+    def create_url(self) -> str:
         url = f"https://quickstats.nass.usda.gov/api/api_GET/?key={self.api_key}" \
         f"&source_desc={self.source}&sector_desc={self.sector}&group_desc={self.group}" \
         f"&commodity_desc={self.crop}&domain_desc={self.domain_desc}" \
         f"&year={self.year}&reference_period_desc=YEAR&format=JSON" \
-        f"&short_desc={self.data_item} - Yield, MEASURED IN {self.prod_unit} / ACRE"
+        f"&short_desc={self.data_item} - YIELD, MEASURED IN {self.prod_unit} / ACRE"
 
-        response = requests.get(url)
-
-        if response.status_code == 200:
-            # convert the returned data to json
-            data = response.json()['data']  
-            return data
-        elif response.status_code == 400:
-            # no such data, query failed
-            return []
-        else:
-            raise RuntimeError(f"This request for {self.crop} in {self.year} is incorrect, please go to the website to check all fields")
-        
+        return url

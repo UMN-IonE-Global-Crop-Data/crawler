@@ -60,10 +60,6 @@ class StateMerger(Merger):
         
         # guard clause, in case area_row is different from prod_row
         if area_prod_row != yield_row:
-            self.error_handler.handle_error(yield_row)
-
-
-        if area_prod_row != len(new_yield_df):
             error_filename = f"error-{self.source}-{self.filename}"
             print(f"area, production, and yield have different rows, please check the file {error_filename} in the folder to fix the problem")
             
