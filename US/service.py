@@ -40,27 +40,28 @@ class Service:
 
 
     def clean_dic(self, input_dic) -> dict:
-        crop = input_dic["Commodity"].replace("&", "%26")
-        year = int(input_dic["Year"])                     # input will be set to float automatically
+        crop = input_dic["Commodity"]
+        year = int(input_dic["Year"])  # input will be set to float automatically
         source = input_dic["Program"]
-        sector = input_dic["Sector"].replace("&", "%26")
-        group = input_dic["Group"].replace("&", "%26")  # replace "&" with %26 so that it won't affect API url
-        domain_desc = input_dic["Domain"].replace("&", "%26")
+        sector = input_dic["Sector"]
+        group = input_dic["Group"]
+        domain_desc = input_dic["Domain"]
 
         if input_dic["Data_item"] == "":
             data_item = crop
         else:
             data_item = crop + ", " + input_dic["Data_item"]
 
+         # replace "&" with %26 so that it won't affect API url
         res_dic = {
-            "Source" : source,
-            "Sector" : sector,
-            "Group" : group,
-            "Commodity" : crop,
-            "Domain" : domain_desc,
+            "Source" : source.replace("&", "%26"),
+            "Sector" : sector.replace("&", "%26"),
+            "Group" : group.replace("&", "%26"),
+            "Commodity" : crop.replace("&", "%26"),
+            "Domain" : domain_desc.replace("&", "%26"),
             "Year" : year,
-            "Data_item": data_item,
-            "Prod_unit" : input_dic["Prod_unit"]
+            "Data_item": data_item.replace("&", "%26"),
+            "Prod_unit" : input_dic["Prod_unit"].replace("&", "%26")
         }
 
         return res_dic
