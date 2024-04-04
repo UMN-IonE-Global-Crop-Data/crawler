@@ -60,7 +60,7 @@ class CountyMerger(Merger):
 
         # guard clause, in case area_row is different from prod_row
         if area_prod_row != yield_row:
-            error_filename = f"error-{self.source}-{self.filename}"
+            error_filename = f"error-{self.source}-{self.filename}".replace("%26", "&")
             print(f"area, production, and yield have different rows, please check the file {error_filename} in the folder to fix the problem")
             
             # only data with same column header name will be aligned

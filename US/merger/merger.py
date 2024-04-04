@@ -65,11 +65,16 @@ class Merger:
 
 
     def save_file(self, df, filename, level):
+
+
         if self.irr != "":
             filepath = f"{self.source}/{self.irr[1:]}igated/{level}_Level/{self.data_item}"
         else:
             filepath = f"{self.source}/total/{level}_Level/{self.data_item}"
         
+        filename = filename.replace("%26", "&")
+        filepath = filepath.replace("%26", "&")
+
         if not os.path.exists(filepath):
             os.mkdir(filepath)
 
