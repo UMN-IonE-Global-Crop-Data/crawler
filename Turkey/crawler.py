@@ -3,11 +3,10 @@ from file_saver import file_saver
 
 
 class Crawler:
-    def __init__(self, driver, utils, field_xpath_map, crop_type_map):
+    def __init__(self, driver, utils, data_field_xpath_map):
         self.driver = driver
         self.utils = utils
-        self.field_xpath_map = field_xpath_map
-        self.crop_type_map = crop_type_map
+        self.field_xpath_map = data_field_xpath_map
         self.saver = file_saver
 
     def crawl(self, crop_type, level):
@@ -15,7 +14,7 @@ class Crawler:
             if xpath == "":
                 continue
             # reload the current page
-            self.utils.reload_page_and_select_crop_type(crop_type, self.crop_type_map)
+            self.utils.reload_page_and_select_crop_type()
 
             page = 1
             total_index = 0

@@ -4,21 +4,20 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import StaleElementReferenceException
 import time
+from constant import CROP_NAME_TABLE_XPATH, GROUP_TO_XPATH_MAP, FIELD_TABLE_XPATH
 
 class WebOperator:
-    def __init__(self, driver):
+    def __init__(self, driver, crop_group):
         self.driver = driver
+        self.crop_group = crop_group
 
-    def reload_page_and_select_crop_type(self, crop_type, crop_type_map):
-        # Navigate to a website
+    def reload_page_and_select_crop_type(self):
         self.driver.get("https://biruni.tuik.gov.tr/medas/?kn=92&locale=en")
 
-        # Perform actions on the page (e.g., clicking buttons, filling forms)
-        # For example, let's search for "example" on the website
-        crop_type = self.driver.find_element(By.XPATH, crop_type_map[crop_type])
+        crop_type = self.driver.find_element(By.XPATH, GROUP_TO_XPATH_MAP[self.crop_group])
         crop_type.click()
 
-        # ok_button is disabled in the first place, we have to wait until it is available
+        # ok_button is disabled in the first place, wait until it is available
         ok_button = WebDriverWait(self.driver, 10).until(
             EC.element_to_be_clickable((By.XPATH, "/html/body/div/div[1]/div/div[3]/div[2]/div[1]/div/div[3]/div[2]/table/tbody/tr/td/table/tbody/tr/td[3]/div/div[2]/table/tbody/tr/td/table/tbody/tr[3]/td/div/table/tbody/tr/td/table/tbody/tr/td[5]/div/button[1]"))
         )
@@ -30,11 +29,13 @@ class WebOperator:
 
         time.sleep(0.5)
 
+    def get_field_table(self):
+        return self.driver.find_elements(By.XPATH, FIELD_TABLE_XPATH)
+
     def unclick_crop(self, index, page, total_index):
-        crop_table_xpath = "/html/body/div[1]/div[1]/div/div[3]/div[2]/div[1]/div/div[4]/div[2]/div/div[2]/div[2]/div[3]/div[4]/table/tbody[1]/tr"
 
         # unclick the previous crop element
-        crop_table = self.driver.find_elements(By.XPATH, crop_table_xpath)
+        crop_table = self.driver.find_elements(By.XPATH, CROP_NAME_TABLE_XPATH)
 
         # 不要
         # if index > 8: # for test

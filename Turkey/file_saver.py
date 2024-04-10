@@ -7,7 +7,8 @@ class FileSaver:
     def __init__(self):
         pass
 
-    def rename_and_move_file(self, level, crop_type):
+    @staticmethod
+    def rename_and_move_file(level, crop_type):
         """This function renames and moves the downloaded file to the specified folder"""
         src_dir = os.path.join("C:", "Users", "wucha", "Downloads")
         for file in os.listdir(src_dir):
@@ -37,7 +38,8 @@ class FileSaver:
 
                 shutil.move(os.path.join(src_dir, file), os.path.join(target_dir, file_name))
 
-    def save_missing_crop_data(self, level, content):
+    @staticmethod
+    def save_missing_crop_data(level, content):
         file = open("missing_data.txt", "a", encoding="utf-8")
         file.write(f"{level},{content}\n")
         file.close()

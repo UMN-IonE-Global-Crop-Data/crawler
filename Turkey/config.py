@@ -1,21 +1,37 @@
+from selenium.webdriver.common.by import By
+from constant import FIELD_TABLE_XPATH
 
-crop_type_map = {
-        "cereal" : "/html/body/div/div[1]/div/div[3]/div[2]/div[1]/div/div[3]/div[2]/table/tbody/tr/td/table/tbody/tr/td[1]/div/div[3]/table/tbody[1]/tr[2]/td[2]/div",
-        "vegetable" : "/html/body/div/div[1]/div/div[3]/div[2]/div[1]/div/div[3]/div[2]/table/tbody/tr/td/table/tbody/tr/td[1]/div/div[3]/table/tbody[1]/tr[3]/td[2]/div",
-        "fruit" : "/html/body/div[1]/div[1]/div/div[3]/div[2]/div[1]/div/div[3]/div[2]/table/tbody/tr/td/table/tbody/tr/td[1]/div/div[3]/table/tbody[1]/tr[4]/td[2]/div",
-        "ornamentals" : "/html/body/div/div[1]/div/div[3]/div[2]/div[1]/div/div[3]/div[2]/table/tbody/tr/td/table/tbody/tr/td[1]/div/div[3]/table/tbody[1]/tr[5]/td[2]/div",
-        "irrigation" : "/html/body/div/div[1]/div/div[3]/div[2]/div[1]/div/div[3]/div[2]/table/tbody/tr/td/table/tbody/tr/td[1]/div/div[3]/table/tbody[1]/tr[10]/td[2]/div"
-    }
+class Config:
+    def __init__(self, web_operator):
+        self.web_operator = web_operator
+
+    def setup_field_map(self) -> dict:
+        self.web_operator.reload_page_and_select_crop_type()
+
+        table = self.web_operator.get_field_table()
+
+        if len(table) == 3:
+            data_field_xpath_map = {
+                "sown_area": f"{FIELD_TABLE_XPATH}[2]/td/div",
+                "production": f"{FIELD_TABLE_XPATH}[3]/td/div"
+            }
+        elif len(table) == 5:
+            data_field_xpath_map = {
+                "sown_area": f"{FIELD_TABLE_XPATH}[2]/td/div",
+                "harvest_area": f"{FIELD_TABLE_XPATH}[3]/td/div",
+                "yield": f"{FIELD_TABLE_XPATH}[4]/td/div",
+                "production": f"{FIELD_TABLE_XPATH}[5]/td/div"
+            }
+        elif len(table) == 6:
+            data_field_xpath_map = {
+                "area_of_compact": f"{FIELD_TABLE_XPATH}[2]/td/div",
+                "number_of_bearing": f"{FIELD_TABLE_XPATH}[3]/td/div",
+                "number_of_non_bearing": f"{FIELD_TABLE_XPATH}[4]/td/div",
+                "yield": f"{FIELD_TABLE_XPATH}[5]/td/div",
+                "production": f"{FIELD_TABLE_XPATH}[6]/td/div"
+
+            }
+
+        return data_field_xpath_map
 
 
-table_xpath = "/html/body/div/div[1]/div/div[3]/div[2]/div[1]/div/div[4]/div[2]/div/div[1]/div[2]/div[3]/div[4]/table/tbody[1]/tr"
-
-field_xpath_map = {
-    "sown_area" : f"{table_xpath}[2]/td/div",
-    "harvest_area" : "",
-    "yield" : "",
-    "production" : ""
-    
-}
-
-levels = ["Turkey", "NUTS1", "NUTS2 (26 Regions)", "NUTS3 (Province Level)", "Subprovince Level"]
