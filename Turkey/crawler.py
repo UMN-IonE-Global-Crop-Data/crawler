@@ -1,4 +1,6 @@
 from selenium.webdriver.common.by import By
+from file_saver import file_saver
+
 
 class Crawler:
     def __init__(self, driver, utils, field_xpath_map, crop_type_map):
@@ -6,9 +8,9 @@ class Crawler:
         self.utils = utils
         self.field_xpath_map = field_xpath_map
         self.crop_type_map = crop_type_map
+        self.saver = file_saver
 
     def crawl(self, crop_type, level):
-        # select field (sown_area, harvest_area, yield, sown_area, production)
         for xpath in self.field_xpath_map.values():
             if xpath == "":
                 continue
@@ -38,17 +40,18 @@ class Crawler:
 
                     select_crop_successful = self.utils.select_crop_and_unit(i, page, total_index)
                     if not select_crop_successful:
-                        self.utils.save_missing_crop_data(level, crop_name)
+                        self.saver.save_missing_crop_data(level, crop_name)
                         self.utils.return_to_homepage()
                         continue
 
                     # select the indictor
                     self.utils.select_the_indictor()
                     self.utils.select_all_years()
-                    select_all_regions_sucessful = self.utils.select_all_regions(level)
+                    select_all_regions_successful = self.utils.select_all_regions(level)
 
-                    if not select_all_regions_sucessful:
-                        self.utils.save_missing_crop_data(level, crop_name)
+                    if not select_all_regions_successful:
+                        print("incorrect regions")
+                        self.saver.save_missing_crop_data(level, crop_name)
                         self.utils.return_to_homepage()
                         continue
 
@@ -60,11 +63,4 @@ class Crawler:
                 self.utils.unclick_crop(i + 1, page, total_index)
                 page += 1
 
-                # search_input = driver.find_element(By.XPATH, "/html/body/div/div[1]/div/div[3]/div[2]/div[1]/div/div[4]/div[2]/div/div[2]/div[2]/div[1]/input")
-                # # send page number to the page_input
-                # search_input.send_keys(Keys.CONTROL + "a")  # select all things in the input
-                # search_input.clear()
-                # search_input.send_keys(Keys.ENTER)
-                # time.sleep(0.5)
-
-            self.utils.rename_and_move_file(level, crop_type)
+            self.saver.rename_and_move_file(level, crop_type)
