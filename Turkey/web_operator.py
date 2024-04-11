@@ -4,7 +4,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import StaleElementReferenceException
 import time
-from constant import CROP_NAME_TABLE_XPATH, GROUP_TO_XPATH_MAP, FIELD_TABLE_XPATH
+from constant import CROP_NAME_TABLE_XPATH, GROUP_TO_XPATH_MAP, FIELD_TABLE_XPATH, CROP_INPUT_PATH
+
 
 class WebOperator:
     def __init__(self, driver, crop_group):
@@ -49,6 +50,11 @@ class WebOperator:
             preivous_indictor = self.driver.find_element(By.XPATH, "/html/body/div[1]/div[1]/div/div[3]/div[2]/div[1]/div/div[8]/div[2]/div[1]/div/div/div[3]/table/tbody[1]/tr/td[1]/div/a").click()
         time.sleep(0.5)
 
+    def choose_crop(self, crop_name):
+        crop_input = self.driver.find_element(By.XPATH, CROP_INPUT_PATH)
+
+        crop_input.send_keys(crop_name)
+        crop_input.send_keys(Keys.ENTER)
 
     def change_page(self, page):
         xpath = "/html/body/div[1]/div[1]/div/div[3]/div[2]/div[1]/div/div[4]/div[2]/div/div[2]/div[2]/div[3]/div[1]/div/ul/li[3]/input"
@@ -56,29 +62,21 @@ class WebOperator:
         try:
             # Find the element
             page_input = self.driver.find_element(By.XPATH, xpath)
-            time.sleep(0.5)
             # Perform actions on the element
             page_input.send_keys(Keys.CONTROL + "a")  # select all things in the input
-            time.sleep(0.8)
             page_input.send_keys(page)
-            time.sleep(0.5)
             page_input.send_keys(Keys.ENTER)
-            time.sleep(0.5)
 
         except StaleElementReferenceException:
             # If element is stale, wait and attempt to find it again
             time.sleep(1)
             page_input = self.driver.find_element(By.XPATH, xpath)
-            time.sleep(0.5)
             page_input.send_keys(Keys.CONTROL + "a")  # select all things in the input
-            time.sleep(0.5)
             page_input.send_keys(page)
-            time.sleep(0.5)
             page_input.send_keys(Keys.ENTER)
-            time.sleep(0.5)
 
-    # def select_unit(self.driver, index, page, total_index):
-    def select_unit(self, total_index):
+
+    def select_unit(self):
         unit_xpath = "/html/body/div/div[1]/div/div[3]/div[2]/div[1]/div/div[4]/div[2]/div/div[3]/div[2]/div[3]/div[4]/table/tbody[1]/tr"
         unit = self.driver.find_elements(By.XPATH, unit_xpath)
 
@@ -88,60 +86,52 @@ class WebOperator:
         unit[0].click()
         time.sleep(0.5)
 
+    def select_a_single_crop_and_unit(self, index):
+        crop_table = self.driver.find_elements(By.XPATH, CROP_NAME_TABLE_XPATH)
+        crop_table[index].click()
+        time.sleep(0.5)
+        self.select_unit()
+        add_measurement_button = self.driver.find_element(By.XPATH, "/html/body/div/div[1]/div/div[3]/div[2]/div[1]/div/div[6]/div[1]/div/div/div/table/tbody/tr/td/table/tbody/tr/td[1]/a/span").click()
+
+        return True
 
     def select_crop_and_unit(self, index, page, total_index):
-        # 返回之后需要取消掉上一次的选中的crop
+        # the crop selected last time needs to be un-checked
         self.unclick_crop(index, page, total_index)
 
-        # 取消之前的unit
         if total_index != 0:
-            self.select_unit(total_index)
+            self.select_unit()
 
-        # for i in range(0, len(crop_table)):
-        #     print(f'index : {i}, item: {crop_table[i].text}')
         self.change_page(page)
-        # Click on the current element
+
         time.sleep(0.5)
-        crop_table_xpath = "/html/body/div[1]/div[1]/div/div[3]/div[2]/div[1]/div/div[4]/div[2]/div/div[2]/div[2]/div[3]/div[4]/table/tbody[1]/tr"
-        crop_table = self.driver.find_elements(By.XPATH, crop_table_xpath)
+        crop_table = self.driver.find_elements(By.XPATH, CROP_NAME_TABLE_XPATH)
         crop_table[index].click()
         time.sleep(0.5)
 
-        # track the name of current crop
-        # crop_name = self.driver.find_element(By.XPATH, f"{crop_table_xpath}[{index+1}]/td/div/span[2]").text
-        # print(f"cur: {index}, name: {crop_name}")
-
-        # if crop_name == "<All>":
-        #     return "<All>"
-
-        # wait for the page to load
-        unit_xpath = "/html/body/div/div[1]/div/div[3]/div[2]/div[1]/div/div[4]/div[2]/div/div[3]/div[2]/div[3]/div[4]/table/tbody[1]/tr"
-
-        time.sleep(0.5)
-
-        self.select_unit(total_index)
+        self.select_unit()
 
         add_measurement_button = self.driver.find_element(By.XPATH, "/html/body/div/div[1]/div/div[3]/div[2]/div[1]/div/div[6]/div[1]/div/div/div/table/tbody/tr/td/table/tbody/tr/td[1]/a/span").click()
 
         return True
 
-    def select_field_and_get_crop_table(self, xpath, page, total_index):
-        crop_table_xpath = "/html/body/div[1]/div[1]/div/div[3]/div[2]/div[1]/div/div[4]/div[2]/div/div[2]/div[2]/div[3]/div[4]/table/tbody[1]/tr"
+    def select_field(self, xpath, page=1, total_index=0):
         if page == 1 or total_index == 0:
             self.driver.find_element(By.XPATH, xpath).click()
             time.sleep(0.5)
 
-        crop_table = self.driver.find_elements(By.XPATH, crop_table_xpath)
+    def get_crop_table(self):
+        crop_table = self.driver.find_elements(By.XPATH, CROP_NAME_TABLE_XPATH)
         time.sleep(0.5)
 
         return crop_table
+
 
     def return_to_homepage(self):
         by_indicotor_page = self.driver.find_element(By.XPATH, "/html/body/div[1]/div[1]/div/div[3]/div[1]/ul/li[1]/a/span")
         self.driver.execute_script("window.scrollTo(0, 0)")  # scoll up to include target the button
         by_indicotor_page.click()
         time.sleep(0.5)
-
 
 
     def select_the_indictor(self):
@@ -158,15 +148,18 @@ class WebOperator:
         forward_button = self.driver.find_element(By.XPATH, "/html/body/div[1]/div[1]/div/div[3]/div[2]/div[1]/div/div[9]/button").click()
         time.sleep(0.7)
 
+
     def select_all_years(self):
         all_year_button = WebDriverWait(self.driver, 10).until(
             EC.element_to_be_clickable((By.XPATH, "/html/body/div[1]/div[1]/div/div[3]/div[2]/div[2]/div/div[1]/div[2]/table/tbody/tr/td/table/tbody/tr/td[1]/div/div[1]/table/tbody/tr/th[1]/div/span"))
         )
-
         all_year_button.click()
-        time.sleep(0.5)
-        foward_button = self.driver.find_element(By.XPATH, "/html/body/div[1]/div[1]/div/div[3]/div[2]/div[2]/div/div[2]/button[2]").click()
-        time.sleep(0.5)
+
+        forward_button = WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "/html/body/div[1]/div[1]/div/div[3]/div[2]/div[2]/div/div[2]/button[2]"))
+        )
+        forward_button.click()
+
 
     def select_all_regions(self, level):
         time.sleep(0.5)
@@ -183,11 +176,6 @@ class WebOperator:
             return False
 
 
-        if level == "Subprovince Level":
-            return True
-
-
-
         # select all regions
         all_region_button = WebDriverWait(self.driver, 10).until(
             EC.element_to_be_clickable((By.XPATH, "/html/body/div[1]/div[1]/div/div[3]/div[2]/div[3]/div/div[1]/div/div[2]/table/tbody/tr/td/table/tbody/tr/td[1]/div/div[1]/table/tbody/tr/th[1]/div/span")
@@ -195,6 +183,7 @@ class WebOperator:
         all_region_button.click()
         time.sleep(0.5)
         return True
+
 
     def generate_report(self):
         time.sleep(0.5)
@@ -210,15 +199,9 @@ class WebOperator:
 
             time.sleep(0.5)
         except Exception as e:
-            time.sleep(1)
             xslx_button = WebDriverWait(self.driver, 15).until(
                 EC.element_to_be_clickable((By.XPATH, "/html/body/div[1]/div[1]/div/div[3]/div[2]/div[4]/div[1]/div[3]/div/div/div/div[2]/div[3]/div/div/div[3]/a/span"))
             )
             xslx_button.click()
 
             time.sleep(0.5)
-
-
-
-
-

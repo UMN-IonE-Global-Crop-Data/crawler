@@ -1,11 +1,17 @@
-from selenium.webdriver.common.by import By
+import os
 from constant import FIELD_TABLE_XPATH
+
 
 class Config:
     def __init__(self, web_operator):
         self.web_operator = web_operator
 
-    def setup_field_map(self) -> dict:
+    def set_up_everything(self):
+        self.set_up_field_map()
+        field_map = self.set_up_field_map()
+        return field_map
+
+    def set_up_field_map(self) -> dict:
         self.web_operator.reload_page_and_select_crop_type()
 
         table = self.web_operator.get_field_table()
@@ -33,5 +39,11 @@ class Config:
             }
 
         return data_field_xpath_map
+
+    def set_up_directory(self):
+        cur_path = os.getcwd()
+        download_path = os.path.join(cur_path, "/downloads")
+        if not os.path.exists(download_path):
+            os.mkdir(download_path)
 
 

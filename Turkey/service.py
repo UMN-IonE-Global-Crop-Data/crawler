@@ -1,7 +1,8 @@
 from selenium import webdriver
-from selenium.webdriver.common.by import By
+import os
 
-from crawler import Crawler
+from crawler.Impl.all_crop_crawler import AllCropCrawler
+from crawler.Impl.single_crop_crawler import SingleCropCrawler
 from web_operator import WebOperator
 from config import Config
 from merger import merger
@@ -10,19 +11,34 @@ from merger import merger
 class Service:
 
     def __init__(self):
-        self.driver = webdriver.Chrome()
+        download_path = os.path.join(os.getcwd(), 'downloads')
+        options = webdriver.ChromeOptions()
+        prefs = {"download.default_directory": download_path,
+                 "download.prompt_for_download": False,
+                 "download.directory_upgrade": True,
+                 "safebrowsing.enabled": True
+                 }
+        options.add_experimental_option('prefs', prefs)
+        self.driver = webdriver.Chrome(options=options)
         self.driver.implicitly_wait(5)
 
-
     def start(self, dic: dict):
-        crop_group = dic["Group"]
+        group = dic["Group"]
         level = dic["Level"]
-        web_operator = WebOperator(self.driver, crop_group)
-        config = Config(web_operator)
-        data_field_xpath_map = config.setup_field_map()
+        crop = dic["Crop"]
 
-        crawler = Crawler(self.driver, web_operator, data_field_xpath_map)
-        crawler.crawl(crop_group, level)
-        merger.merge(crop_group, level)
+        web_operator = WebOperator(self.driver, group)
+        config = Config(web_operator)
+        data_field_xpath_map = config.set_up_everything()
+
+        if not crop:
+            crawler = AllCropCrawler(self.driver, web_operator, data_field_xpath_map, group, level)
+        else:
+            crawler = SingleCropCrawler(self.driver, web_operator, data_field_xpath_map, group, level, crop)
+        crawler.crawl()
+
+        # finish data downloading
+        merger.merge(level, group)
+
 
 service = Service()

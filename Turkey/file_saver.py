@@ -10,7 +10,7 @@ class FileSaver:
     @staticmethod
     def rename_and_move_file(level, crop_type):
         """This function renames and moves the downloaded file to the specified folder"""
-        src_dir = os.path.join("C:", "Users", "wucha", "Downloads")
+        src_dir = os.getcwd() + "/downloads"
         for file in os.listdir(src_dir):
             if file.endswith(".xls"):
                 df = pd.read_excel(os.path.join(src_dir, file), header=None)
