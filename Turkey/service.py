@@ -1,53 +1,44 @@
 from selenium import webdriver
-from selenium.webdriver.common.by import By
+import os
 
-from crawler import Crawler
+from crawler.Impl.all_crop_crawler import AllCropCrawler
+from crawler.Impl.single_crop_crawler import SingleCropCrawler
 from web_operator import WebOperator
+from config import Config
 from merger import merger
 
-import config
-
-crop_type_map = config.crop_type_map
-field_xpath_map = config.field_xpath_map
-table_xpath = config.table_xpath
-levels = config.levels
-
-
-def set_up(crop_type):
-    utils.reload_page_and_select_crop_type(crop_type, crop_type_map)
-
-    # get all elements in the table
-    table = driver.find_elements(By.XPATH, config.table_xpath)
-
-    if len(table) == 3:
-        field_xpath_map["production"] = f"{table_xpath}[3]/td/div"
-    elif len(table) == 5:
-        field_xpath_map["harvest_area"] = f"{table_xpath}[3]/td/div"
-        field_xpath_map["yield"] = f"{table_xpath}[4]/td/div"
-        field_xpath_map["production"] = f"{table_xpath}[5]/td/div"
-    elif len(table) == 6:  # fruit
-        field_xpath_map.clear()
-        field_xpath_map["area_of_compact"] = f"{table_xpath}[2]/td/div"
-        field_xpath_map["number_of_bearing"] = f"{table_xpath}[3]/td/div"
-        field_xpath_map["number_of_non_bearing"] = f"{table_xpath}[4]/td/div"
-        field_xpath_map["yield"] = f"{table_xpath}[5]/td/div"
-        field_xpath_map["production"] = f"{table_xpath}[6]/td/div"
-
-driver = webdriver.Chrome()
-driver.implicitly_wait(5)
-utils = WebOperator(driver)
-crawler = Crawler(driver, utils, field_xpath_map, crop_type_map)
 
 class Service:
 
     def __init__(self):
-        pass
+        download_path = os.path.join(os.getcwd(), 'downloads')
+        options = webdriver.ChromeOptions()
+        prefs = {"download.default_directory": download_path,
+                 "download.prompt_for_download": False,
+                 "download.directory_upgrade": True,
+                 "safebrowsing.enabled": True
+                 }
+        options.add_experimental_option('prefs', prefs)
+        self.driver = webdriver.Chrome(options=options)
+        self.driver.implicitly_wait(5)
 
     def start(self, dic: dict):
-        crop_group = dic["Group"]
+        group = dic["Group"]
         level = dic["Level"]
-        set_up(crop_group)
-        crawler.crawl(crop_group, level)
-        merger.merge(crop_group, level)
+        crop = dic["Crop"]
+
+        web_operator = WebOperator(self.driver, group)
+        config = Config(web_operator)
+        data_field_xpath_map = config.set_up_everything()
+
+        if not crop:
+            crawler = AllCropCrawler(self.driver, web_operator, data_field_xpath_map, group, level)
+        else:
+            crawler = SingleCropCrawler(self.driver, web_operator, data_field_xpath_map, group, level, crop)
+        crawler.crawl()
+
+        # finish data downloading
+        merger.merge(level, group)
+
 
 service = Service()

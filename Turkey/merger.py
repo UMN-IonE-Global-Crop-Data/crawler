@@ -168,7 +168,5 @@ class Merger:
 
         res.to_csv(f"{output_path}\\{crop_name}.csv", index=False, encoding="utf-8-sig")
 
-    # rename_and_move_file("Turkey", "fruits")
-
 
 merger = Merger()
