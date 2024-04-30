@@ -6,7 +6,7 @@ import time
 
 
 # i-index we don't need the first one(which is "Select State")
-i = 10
+i = 2
 while i <= 21:
     wb = webdriver.Chrome()
     wb.implicitly_wait(10)
