@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from crawler import Crawler
+from crawler import DistrictCrawler, StateCrawler
 
 
 
@@ -14,8 +14,8 @@ if __name__ == '__main__':
     print('program starts')
 
     for i in range(0,len(dict_list)):
-        print(i)
-        new_craw = Crawler(dict_list[i])
+        new_craw = DistrictCrawler(dict_list[i])
         new_craw.crawling()
-    
+
+        
     print("Program ends")
