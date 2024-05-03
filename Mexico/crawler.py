@@ -3,6 +3,8 @@ from selenium.webdriver import ChromeOptions
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from bs4 import BeautifulSoup
+import pandas as pd
 import time
 import os
 #import numpy as np
@@ -26,6 +28,28 @@ class Crawler:
 
     def crawling(self):
         pass
+
+    # def arrange(self,df):
+    #     new_header = df.iloc[0]
+    #     print(f"new header: {new_header}" )  
+    #     df = df.iloc[:-1, :]
+    #     print(df)
+    #     df.columns = new_header 
+    #     df.reset_index(drop=True, inplace=True)
+    #     print(df)
+    #     #df = df.drop(df.tail(1).index)
+
+    #     #select and rename the column
+    #     selected_columns = df[['Entidad', 'Distrito','Sembrada', 'Cosechada', 'Producción','Valor Producción (miles de Pesos)']]
+    #     selected_columns.columns = ['State', 'District','Sown Area (ha)', 'Harvested Area  (ha)', 'Production','Value of production']
+
+    #     #insert year and crop name
+    #     selected_columns.insert(2, 'year', self.year)
+    #     selected_columns.insert(3, 'crop', self.crop)
+
+    #     #cleaned dataframe
+    #     selected_columns.to_excel('.\\arranged\\arranged.xlsx', index= False)
+        
 
 class StateCrawler(Crawler):
     # get all state level crop data
@@ -57,7 +81,7 @@ class DistrictCrawler(Crawler):
         wb.implicitly_wait(10)
         wb.get("https://nube.siap.gob.mx/cierreagricola")
         time.sleep(1)
-        #
+        #district
         wb.find_element(By.XPATH,"//*[@id='opcionDDRMpio3']").click()
 
         #years
@@ -73,13 +97,42 @@ class DistrictCrawler(Crawler):
         #crops
         wb.find_element(By.XPATH, f"//*[@id='cultivo']/option[text()= '{self.crop}']").click()
 
+        #consult
         time.sleep(1)
         wb.find_element(By.XPATH, "//*[@id='divNoImprimir']/div[3]/div/div[2]/input").click()
-        
-
-        #download data
-        wb.find_element(By.XPATH,"//*[@id='divNoImprimir']/div[3]/div/div[5]/img").click()
         time.sleep(1)
+        
+        #download table(html)'
+        
+        table = wb.find_element(By.XPATH,"//*[@id='Resultados-reporte']")
+        table_html = table.get_attribute('outerHTML')
+
+        #Use BeautifulSoup to parse the HTML content
+        soup = BeautifulSoup(table_html, 'lxml')
+
+        #click excel
+        #wb.find_element(By.XPATH,"//*[@id='divNoImprimir']/div[3]/div/div[5]/img").click()
+
+        # Find the table in the HTML
+        table = soup.find('table')
+        # Convert the table to a DataFrame
+        df = pd.read_html(str(table))[0]
+        print("raw:")
+        print(df)
+        df = df.iloc[:-1, 1:]
+        print("sliced")
+        print(df)
+        #df.columns = ['Entidad', 'Distrito', 'Cosechada','Sembrada','Siniestrada','Producción','Rendimiento', 'PMR','Valor Producción (miles de Pesos)']
+        df.columns =['Entity', 'District', 'Harvested',  'Sown', 'Damaged',
+                      'Production', 'Yield(udm/ha)', 'PMR($/udm)', 'Production Value (thousands of Pesos)']
+        df.insert(2, 'year', self.year)
+        df.insert(3, 'crop', self.crop)
+        print("final df:")
+        print(df)
+       
+        return df
+
+    
 
 
 

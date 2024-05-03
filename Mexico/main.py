@@ -1,8 +1,6 @@
 import pandas as pd
 import numpy as np
-from crawler import DistrictCrawler, StateCrawler
-
-
+from service import Service
 
 if __name__ == '__main__':
     df = pd.read_excel('input.xlsx')
@@ -13,9 +11,11 @@ if __name__ == '__main__':
 
     print('program starts')
 
-    for i in range(0,len(dict_list)):
-        new_craw = DistrictCrawler(dict_list[i])
-        new_craw.crawling()
+    for dic in dict_list:
+        service = Service(dic)
+        service.start()
 
         
     print("Program ends")
+
+
