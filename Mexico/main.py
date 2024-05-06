@@ -4,7 +4,7 @@ from service import Service
 
 if __name__ == '__main__':
     df = pd.read_excel('input.xlsx')
-    df = df.replace({np.nan, ""})
+    df = df.replace(np.nan, None)
     dict_list = df.to_dict(orient='records')
 
     print(dict_list)
@@ -14,6 +14,8 @@ if __name__ == '__main__':
     for dic in dict_list:
         service = Service(dic)
         service.start()
+        
+
 
         
     print("Program ends")
