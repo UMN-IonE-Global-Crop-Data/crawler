@@ -1,11 +1,12 @@
 import pandas as pd
 import os
-states = ["National", "Aguascalientes", "Baja California", "Baja California Sur", "Campeche",
-           "Coahuila", "Colima", "Chiapas", "Chihuahua", "Mexico City", "Durango", "Guanajuato",
-             "Guerrero", "Hidalgo", "Jalisco", "Mexico", "Michoacán", "Morelos", "Nayarit", "Nuevo Leon",
-               "Oaxaca", "Puebla", "Queretaro", "Quintana Roo", "San Luis Potosi", "Sinaloa", "Sonora",
-                 "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz", "Yucatan", "Zacatecas"]
-years = list(range(2010, 2023))
+states = ["Nacional"]
+# states = ["Aguascalientes", "Baja California", "Baja California Sur", "Campeche",
+#            "Coahuila", "Colima", "Chiapas", "Chihuahua", "Mexico City", "Durango", "Guanajuato",
+#              "Guerrero", "Hidalgo", "Jalisco", "Mexico", "Michoacán", "Morelos", "Nayarit", "Nuevo Leon",
+#                "Oaxaca", "Puebla", "Queretaro", "Quintana Roo", "San Luis Potosi", "Sinaloa", "Sonora",
+#                  "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz", "Yucatan", "Zacatecas"]
+years = list(range(2019, 2023))
 
 data = []
 

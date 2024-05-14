@@ -16,7 +16,7 @@ class Crawler:
         self.year = input_dic["Year"]
         self.crop = input_dic["Crop"]
         self.state = input_dic["State"]
-        self.distict = input_dic["District"]
+       # self.distict = input_dic["District"]
         self.state_list = ["National", "Aguascalientes", "Baja California", "Baja California Sur", "Campeche", 
                            "Coahuila", "Colima", "Chiapas", "Chihuahua", "Mexico City", "Durango", "Guanajuato",
                             "Guerrero", "Hidalgo", "Jalisco", "Mexico", "Michoacán", "Morelos", "Nayarit", "Nuevo Leon", 
