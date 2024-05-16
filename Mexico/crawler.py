@@ -3,6 +3,7 @@ from selenium.webdriver import ChromeOptions
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import NoSuchElementException
 from bs4 import BeautifulSoup
 import pandas as pd
 import time
@@ -61,7 +62,7 @@ class StateCrawler(Crawler):
     # get all state level crop data
     def crawling(self):
         wb = webdriver.Chrome(options=self.options)
-        wb.implicitly_wait(10)
+        wb.implicitly_wait(7)
         wb.get("https://nube.siap.gob.mx/cierreagricola")
 
         #years
@@ -113,7 +114,7 @@ class DistrictCrawler(Crawler):
     # get all district level crop data within one state
     def crawling(self):
         wb = webdriver.Chrome()
-        wb.implicitly_wait(10)
+        wb.implicitly_wait(7)
         wb.get("https://nube.siap.gob.mx/cierreagricola")
         time.sleep(1)
         #district
@@ -130,8 +131,16 @@ class DistrictCrawler(Crawler):
         #wb.find_element(By.XPATH,f"//*[@id='distrito']/option[text()=' Todos ']").click()
 
         #crops
-        time.sleep(1)
-        wb.find_element(By.XPATH, f"//*[@id='cultivo']/option[text()= '{self.crop}']").click()
+        try:
+            time.sleep(1)
+            wb.find_element(By.XPATH, f"//*[@id='cultivo']/option[text()= '{self.crop}']").click()
+            
+        except NoSuchElementException:
+            # If the specific option is not found, return an empty DataFrame
+            print("Specified crop option not found. Returning empty DataFrame.")
+            columns = ['Entity', 'District', 'Sown', 'Harvested', 'Damaged',
+                       'Production', 'Yield(udm/ha)', 'PMR($/udm)', 'Production Value (thousands of Pesos)']
+            return pd.DataFrame(columns=columns)
 
         #consult
         time.sleep(1)
