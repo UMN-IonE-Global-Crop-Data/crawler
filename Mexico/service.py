@@ -1,7 +1,9 @@
-from crawler import DistrictCrawler, StateCrawler
+from crawler import DistrictCrawler, StateCrawler, SubDistrictCrwaler
 import numpy as np
 import pandas as pd
 import os
+from gen_input import input_gen
+from merge import del_files, combine_excel_files
 
 class Service:
 
@@ -14,9 +16,13 @@ class Service:
             file_name = f"State_{self.dic['Crop']}_{self.dic['Year']}.xlsx"
             new_craw = StateCrawler(self.dic)
             raw_df = new_craw.crawling()
-        else:
+        elif(self.dic["State"] == "Nacional"):
             file_name = f"{self.dic['State']}_{self.dic['Crop']}_{self.dic['Year']}.xlsx"
             new_craw = DistrictCrawler(self.dic)
+            raw_df = new_craw.crawling()
+        else:
+            file_name = f"{self.dic['State']}_{self.dic['Crop']}_{self.dic['Year']}.xlsx"
+            new_craw = SubDistrictCrwaler(self.dic)
             raw_df = new_craw.crawling()
 
         download_path = os.path.join(os.getcwd(),'downloads',file_name)

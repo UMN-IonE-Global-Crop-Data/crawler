@@ -20,7 +20,23 @@ def combine_excel_files(folder_path, output_file):
     combined_df.to_excel(output_file, index=False)
     print(f"Combined file created at {output_file}")
 
+
+
+
+def del_files(folder_path):
+    #delete all the files in a folder
+    for filename in os.listdir(folder_path):
+        file_path = os.path.join(folder_path, filename)
+        try:
+            if os.path.isfile(file_path):
+                os.remove(file_path)  # 删除文件
+        except Exception as e:
+            print(f'Failed to delete {file_path}. Reason: {e}')
+
+
+
 # Example usage:
-folder_path = os.path.join(os.getcwd(),'downloads')  # Update this path
-output_file = os.path.join(os.getcwd(),'outputs','Mustard.xlsx')
-combine_excel_files(folder_path, output_file)
+# folder_path = os.path.join(os.getcwd(),'downloads')  # Update this path
+# output_file = os.path.join(os.getcwd(),'outputs','sunflower.xlsx')
+# combine_excel_files(folder_path, output_file)
+# del_files(folder_path)

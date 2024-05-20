@@ -62,7 +62,7 @@ class StateCrawler(Crawler):
     # get all state level crop data
     def crawling(self):
         wb = webdriver.Chrome(options=self.options)
-        wb.implicitly_wait(7)
+        wb.implicitly_wait(10)
         wb.get("https://nube.siap.gob.mx/cierreagricola")
 
         #years
@@ -114,7 +114,7 @@ class DistrictCrawler(Crawler):
     # get all district level crop data within one state
     def crawling(self):
         wb = webdriver.Chrome()
-        wb.implicitly_wait(7)
+        wb.implicitly_wait(10)
         wb.get("https://nube.siap.gob.mx/cierreagricola")
         time.sleep(1)
         #district
@@ -138,7 +138,7 @@ class DistrictCrawler(Crawler):
         except NoSuchElementException:
             # If the specific option is not found, return an empty DataFrame
             print("Specified crop option not found. Returning empty DataFrame.")
-            columns = ['Entity', 'District', 'Sown', 'Harvested', 'Damaged',
+            columns = ['Entity', 'District','year','crop', 'Sown', 'Harvested', 'Damaged',
                        'Production', 'Yield(udm/ha)', 'PMR($/udm)', 'Production Value (thousands of Pesos)']
             return pd.DataFrame(columns=columns)
 
@@ -176,6 +176,74 @@ class DistrictCrawler(Crawler):
         print(df)
        
         return df
+    
+class SubDistrictCrwaler(Crawler):
+     # get all district level crop data within one state
+    def crawling(self):
+        wb = webdriver.Chrome()
+        wb.implicitly_wait(10)
+        wb.get("https://nube.siap.gob.mx/cierreagricola")
+        time.sleep(1)
+        #sub-district//
+        wb.find_element(By.XPATH,"//*[@id='opcionDDRMpio4']").click()
+
+        #years
+        wb.find_element(By.XPATH,f"//*[@id='anioagric']/option[text()={self.year}]").click()
+
+        #state
+        #time.sleep(1)
+        #wb.find_element(By.XPATH,f"//*[@id='entidad']/option[text()='{self.state}']").click()
+
+        ##district
+        #wb.find_element(By.XPATH,f"//*[@id='distrito']/option[text()=' Todos ']").click()
+
+        #crops
+        try:
+            time.sleep(1)
+            wb.find_element(By.XPATH, f"//*[@id='cultivo']/option[text()= '{self.crop}']").click()
+            
+        except NoSuchElementException:
+            # If the specific option is not found, return an empty DataFrame
+            print("Specified crop option not found. Returning empty DataFrame.")
+            columns = ['Entity', 'Sub-District','year','crop', 'Sown', 'Harvested', 'Damaged',
+                       'Production', 'Yield(udm/ha)', 'PMR($/udm)', 'Production Value (thousands of Pesos)']
+            return pd.DataFrame(columns=columns)
+
+        #consult
+        time.sleep(1)
+        wb.find_element(By.XPATH, "//*[@id='divNoImprimir']/div[3]/div/div[2]/input").click()
+        time.sleep(5)
+        
+        #download table(html)'
+        
+        table = wb.find_element(By.XPATH,"//*[@id='Resultados-reporte']")
+        table_html = table.get_attribute('outerHTML')
+
+        #Use BeautifulSoup to parse the HTML content
+        soup = BeautifulSoup(table_html, 'lxml')
+
+        #click excel
+        #wb.find_element(By.XPATH,"//*[@id='divNoImprimir']/div[3]/div/div[5]/img").click()
+
+        # Find the table in the HTML
+        table = soup.find('table')
+        # Convert the table to a DataFrame
+        df = pd.read_html(str(table))[0]
+        print("raw:")
+        print(df)
+        df = df.iloc[:-1, 1:]
+        print("sliced")
+        print(df)
+        #df.columns = ['Entidad', 'Distrito', 'Cosechada','Sembrada','Siniestrada','Producción','Rendimiento', 'PMR','Valor Producción (miles de Pesos)']
+        df.columns =['Entity','Sub-District', 'Sown','Harvested', 'Damaged',
+                      'Production', 'Yield(udm/ha)', 'PMR($/udm)', 'Production Value (thousands of Pesos)']
+        df.insert(2, 'year', self.year)
+        df.insert(3, 'crop', self.crop)
+        print("final df:")
+        print(df)
+       
+        return df
+    
 
     
 
