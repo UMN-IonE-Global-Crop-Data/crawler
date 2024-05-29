@@ -212,8 +212,8 @@ class SubDistrictCrwaler(Crawler):
         #consult
         time.sleep(1)
         wb.find_element(By.XPATH, "//*[@id='divNoImprimir']/div[3]/div/div[2]/input").click()
-        time.sleep(5)
         
+        time.sleep(2)
         #download table(html)'
         
         table = wb.find_element(By.XPATH,"//*[@id='Resultados-reporte']")

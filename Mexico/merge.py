@@ -37,6 +37,6 @@ def del_files(folder_path):
 
 # Example usage:
 # folder_path = os.path.join(os.getcwd(),'downloads')  # Update this path
-# output_file = os.path.join(os.getcwd(),'outputs','sunflower.xlsx')
+# output_file = os.path.join(os.getcwd(),'outputs','wheat(ornament).xlsx')
 # combine_excel_files(folder_path, output_file)
 # del_files(folder_path)

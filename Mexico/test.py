@@ -1,8 +1,8 @@
-from merge import del_files
-import os
+import winsound
 
-folder_path = os.path.join(os.getcwd(),'downloads')  # Update this path
-del_files(folder_path)
+winsound.Beep(900,1100)
+
+
 
 
 
