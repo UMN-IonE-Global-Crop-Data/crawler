@@ -10,15 +10,16 @@ class Service:
 
     def start(self):
         
-        if self.dic["State"] is None:
-            file_name = f"State_{self.dic['Crop']}_{self.dic['Year']}.xlsx"
-            new_craw = StateCrawler(self.dic)
-            raw_df = new_craw.crawling()
-        else:
-            file_name = f"{self.dic['State']}_{self.dic['Crop']}_{self.dic['Year']}.xlsx"
+        if self.dic["Level"] == "Kabupaten":
+            file_name = f"{self.dic['Province']}_{self.dic['Level']}_{self.dic['Crop']}.xlsx"
             new_craw = DistrictCrawler(self.dic)
-            raw_df = new_craw.crawling()
+            df = new_craw.crawling()
+        else:
+            file_name = f"{self.dic['Level']}_{self.dic['Crop']}.xlsx"
+            new_craw = StateCrawler(self.dic)
+            df = new_craw.crawling()
 
         download_path = os.path.join(os.getcwd(),'downloads',file_name)
-        raw_df.to_excel(download_path,index=False)
+        df.to_excel(download_path,index=False)
+   
     

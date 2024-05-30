@@ -15,8 +15,10 @@ class Crawler:
         self.year_start = input_dic["Start Year"] #1970
         self.year_end = input_dic["End Year"] #2024
         self.crop = input_dic["Crop"]
-        self.state = input_dic["State"]
-        self.level = input_dic["level"]
+        self.state = input_dic["Province"]
+        self.level = input_dic["Level"]
+        self.max_retries = 3
+
         #self.distict = input_dic["District"]
         download_path = os.path.join(os.getcwd(), 'downloads')
         self.options = webdriver.ChromeOptions()
@@ -54,7 +56,7 @@ class StateCrawler(Crawler):
     
 
         #select unit "ton" "Ha" "Quiantal/Ha"
-        wb.find_element(By.XPATH,"//*[@id='satuan']/option[2]").click()
+        wb.find_element(By.XPATH,f"//*[@id='satuan']/option[{self.index}]").click()
 
         #start year and end year
         wb.find_element(By.XPATH,f"//*[@id='tahunAwal']/option[text()={self.year_start}]").click()
@@ -72,36 +74,46 @@ class DistrictCrawler(Crawler):
         wb = webdriver.Chrome(options=self.options)
         wb.implicitly_wait(10)
         wb.get("https://bdsp2.pertanian.go.id/bdsp/id/lokasi")
-        #refresh
-        wb.refresh()
-        #select subsector "crop", "horticulture"
-        wb.find_element(By.XPATH,f"//*[@id='subsektor']/option[text()='{self.subsection}']").click()
+        retries = 0
+        #refresh the page if any elements aren't found, if the page are refreshed more than 3 times, raise an error
+        while retries < self.max_retries:
+            try:
+                #select subsector "crop", "horticulture"
+                wb.find_element(By.XPATH,f"//*[@id='subsektor']/option[text()='{self.subsection}']").click()
 
-        #select commodity (crop)
-        
-        print(f"//*[@id='komoditas']/option[text()='{self.crop}']")
-        time.sleep(2)
-        wb.find_element(By.XPATH,f"//*[@id='komoditas']/option[text()='{self.crop}']").click()
+                #select commodity (crop)
+                time.sleep(1)
+                wb.find_element(By.XPATH,f"//*[@id='komoditas']/option[text()='{self.crop}']").click()
 
-        #select indicator "harvest area", "production", "productitvty"
-        wb.find_element(By.XPATH,f"//*[@id='indikator']/option[text()='{self.indictor}']").click()
+                #select indicator "harvest area", "production", "productitvty"
+                wb.find_element(By.XPATH,f"//*[@id='indikator']/option[text()='{self.indictor}']").click()
 
-        #select  level "National" or "Province"
-        wb.find_element(By.XPATH,f"//*[@id='level']/option[text()='{self.level}']").click()
+                #select  level "National" or "Province"
+                wb.find_element(By.XPATH,f"//*[@id='level']/option[text()='{self.level}']").click()
 
-        #select Province
-        wb.find_element(By.XPATH,f"//*[@id='prov']/option[text()='{self.state}']").click()
-    
-        #select unit "ton" "Ha" "Quiantal/Ha"
-        wb.find_element(By.XPATH,"//*[@id='satuan']/option[2]").click()
+                #select Province
+                wb.find_element(By.XPATH,f"//*[@id='prov']/option[text()='{self.state}']").click()
+            
+                #select unit "ton" "Ha" "Quiantal/Ha"
+                wb.find_element(By.XPATH,"//*[@id='satuan']/option[2]").click()
 
-        #start year and end year
-        wb.find_element(By.XPATH,f"//*[@id='tahunAwal']/option[text()={self.year_start}]").click()
-        wb.find_element(By.XPATH,f"//*[@id='tahunAkhir']/option[text()={self.year_end}]").click()
-        
-        #consult
-        wb.find_element(By.XPATH,"//*[@id='search']").click()
-        time.sleep(1)
+                #start year and end year
+                wb.find_element(By.XPATH,f"//*[@id='tahunAwal']/option[text()={self.year_start}]").click()
+                wb.find_element(By.XPATH,f"//*[@id='tahunAkhir']/option[text()={self.year_end}]").click()
+                
+                #consult
+                wb.find_element(By.XPATH,"//*[@id='search']").click()
+                time.sleep(3.5)
+                break  # If no exceptions, break the loop
+            except Exception as e:
+                print(f"Attempt {retries + 1} failed: {e}")
+                retries += 1
+                if retries < self.max_retries:
+                    wb.refresh()
+                    time.sleep(2)  # Wait for the page to reload
+                else:
+                    raise RuntimeError("Max retries reached. Element not found or page load failed.")
+
 
         #download table(html)
         table = wb.find_element(By.XPATH,"//*[@id='example']")
