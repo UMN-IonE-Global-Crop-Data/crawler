@@ -3,6 +3,8 @@ from selenium.webdriver import ChromeOptions
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.alert import Alert
+from selenium.common.exceptions import NoAlertPresentException
 from bs4 import BeautifulSoup
 import pandas as pd
 import time
@@ -17,7 +19,7 @@ class Crawler:
         self.crop = input_dic["Crop"]
         self.state = input_dic["Province"]
         self.level = input_dic["Level"]
-        self.max_retries = 4
+        self.max_retries = 5
 
         #self.distict = input_dic["District"]
         download_path = os.path.join(os.getcwd(), 'downloads')
@@ -28,6 +30,14 @@ class Crawler:
                  "safebrowsing.enabled": True
                  }
         self.options.add_experimental_option('prefs', prefs)
+
+    def init_webdriver(self):
+        """Initialize a new WebDriver session."""
+        wb = webdriver.Chrome(options=self.options)
+        wb.implicitly_wait(10)
+        wb.get("https://bdsp2.pertanian.go.id/bdsp/id/lokasi")
+        return wb
+    
 
     def crawling(self):
         pass
@@ -70,16 +80,38 @@ class StateCrawler(Crawler):
         wb.find_element(By.XPATH,"//*[@id='excel1']").click()
 
 class DistrictCrawler(Crawler):
+     def check_and_handle_alert(self, wb):
+        """Check for and handle alerts. Return True if an alert was handled, False otherwise."""
+        try:
+            alert = wb.switch_to.alert
+            alert_text = alert.text
+            if "status:" in alert_text:
+                print(f"Specific alert handled with text: {alert_text}")
+                alert.accept()  # Dismiss the alert
+                return True  # Indicating that the specific alert was handled
+            return False  # Alert was present but not the specific one we're looking for
+        except NoAlertPresentException:
+            return False  # No alert to handle
+        
      def crawling(self):
-        wb = webdriver.Chrome(options=self.options)
-        wb.implicitly_wait(10)
-        wb.get("https://bdsp2.pertanian.go.id/bdsp/id/lokasi")
-        wb.refresh()
-        time.sleep(2)  # Wait for the page to reload
+        wb = self.init_webdriver()
+        
         retries = 0
         #refresh the page if any elements aren't found, if the page are refreshed more than 3 times, raise an error
         while retries < self.max_retries:
             try:
+                if self.check_and_handle_alert(wb):
+                    print("This error message come from 1st page")
+                    print("Alert handled, restarting WebDriver.")
+                    wb.quit()
+                    wb = self.init_webdriver()
+                    time.sleep(2)  # Wait after restarting the WebDriver
+                    continue
+                if retries == 0:
+                    wb.refresh()
+                    retries += 1
+                    time.sleep(2)  # Wait for the page to reload
+
                 #select subsector "crop", "horticulture"
                 wb.find_element(By.XPATH,f"//*[@id='subsektor']/option[text()='{self.subsection}']").click()
 
@@ -102,9 +134,7 @@ class DistrictCrawler(Crawler):
                 wb.find_element(By.XPATH,f"//*[@id='tahunAwal']/option[text()={self.year_start}]").click()
                 wb.find_element(By.XPATH,f"//*[@id='tahunAkhir']/option[text()={self.year_end}]").click()
                 
-                #consult
-                wb.find_element(By.XPATH,"//*[@id='search']").click()
-                time.sleep(5)
+
                 break  # If no exceptions, break the loop
             except Exception as e:
                 print(f"Attempt {retries + 1} failed: {e}")
@@ -118,6 +148,23 @@ class DistrictCrawler(Crawler):
 
 
         #download table(html)
+        # Click the search element
+        search_button = WebDriverWait(wb, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//*[@id='search']"))
+        )
+        search_button.click()
+
+        if self.check_and_handle_alert(wb):
+                    print("This error message come from 2nd page")
+                    print("Alert handled, restarting WebDriver.")
+                    wb.quit()
+                    wb = self.init_webdriver()
+                    
+                    
+        table = WebDriverWait(wb, 40).until(
+            EC.presence_of_element_located((By.XPATH, "//*[@id='example']"))
+        )
+
         table = wb.find_element(By.XPATH,"//*[@id='example']")
         table_html = table.get_attribute('outerHTML')
 
