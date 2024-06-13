@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 from service import Service
 from crawler import StateCrawler
+import winsound
 if __name__ == '__main__':
     df = pd.read_excel('input.xlsx')
     df = df.replace(np.nan, None)
@@ -18,3 +19,4 @@ if __name__ == '__main__':
         #craw.crawling()
 
     print("Program ends")
+    winsound.Beep(1000,1800)

@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import time
 import os
-
+import winsound
 class Crawler:
     def __init__(self, input_dic):
         self.subsection = input_dic["Subsection"]
@@ -17,7 +17,7 @@ class Crawler:
         self.crop = input_dic["Crop"]
         self.state = input_dic["Province"]
         self.level = input_dic["Level"]
-        self.max_retries = 3
+        self.max_retries = 4
 
         #self.distict = input_dic["District"]
         download_path = os.path.join(os.getcwd(), 'downloads')
@@ -64,7 +64,7 @@ class StateCrawler(Crawler):
         
         #consult
         wb.find_element(By.XPATH,"//*[@id='search']").click()
-        time.sleep(1)
+        time.sleep(5)
 
         #download_excel
         wb.find_element(By.XPATH,"//*[@id='excel1']").click()
@@ -74,6 +74,8 @@ class DistrictCrawler(Crawler):
         wb = webdriver.Chrome(options=self.options)
         wb.implicitly_wait(10)
         wb.get("https://bdsp2.pertanian.go.id/bdsp/id/lokasi")
+        wb.refresh()
+        time.sleep(2)  # Wait for the page to reload
         retries = 0
         #refresh the page if any elements aren't found, if the page are refreshed more than 3 times, raise an error
         while retries < self.max_retries:
@@ -82,7 +84,6 @@ class DistrictCrawler(Crawler):
                 wb.find_element(By.XPATH,f"//*[@id='subsektor']/option[text()='{self.subsection}']").click()
 
                 #select commodity (crop)
-                time.sleep(1)
                 wb.find_element(By.XPATH,f"//*[@id='komoditas']/option[text()='{self.crop}']").click()
 
                 #select indicator "harvest area", "production", "productitvty"
@@ -103,7 +104,7 @@ class DistrictCrawler(Crawler):
                 
                 #consult
                 wb.find_element(By.XPATH,"//*[@id='search']").click()
-                time.sleep(3.5)
+                time.sleep(5)
                 break  # If no exceptions, break the loop
             except Exception as e:
                 print(f"Attempt {retries + 1} failed: {e}")
@@ -112,6 +113,7 @@ class DistrictCrawler(Crawler):
                     wb.refresh()
                     time.sleep(2)  # Wait for the page to reload
                 else:
+                    winsound.Beep(1000,1800)
                     raise RuntimeError("Max retries reached. Element not found or page load failed.")
 
 
