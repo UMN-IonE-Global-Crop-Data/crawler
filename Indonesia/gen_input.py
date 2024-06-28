@@ -22,7 +22,7 @@ provinces = [
 
   
 #level = ["Nasional", "Provinsi", "Kabupaten"]
-#indicator = ["LUAS PANEN","PRODUKSI","PRODUKTIVITAS"]
+#indicator = ["LUAS PANEN","PRODUKSI","PRODUKTIVITAS"] LUAS AREAL -> planatation
 
 
 def input_gen(filepath, indicator ="LUAS PANEN",subsection="Tanaman Pangan", level = "Kabupaten", provs = provinces):
@@ -43,7 +43,7 @@ def input_gen(filepath, indicator ="LUAS PANEN",subsection="Tanaman Pangan", lev
         df.to_excel(download_path,index=False)
 
 #
-input_gen(os.path.join(os.getcwd(),'dict','food_crop.txt'))
+input_gen(os.path.join(os.getcwd(),'dict','plantation.txt'), indicator="PRODUKSI",subsection="Perkebunan") #"Perkebunan"
 
 
 

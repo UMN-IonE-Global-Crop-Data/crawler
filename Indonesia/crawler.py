@@ -19,7 +19,7 @@ class Crawler:
         self.crop = input_dic["Crop"]
         self.state = input_dic["Province"]
         self.level = input_dic["Level"]
-        self.max_retries = 5
+        self.max_retries = 4
 
         #self.distict = input_dic["District"]
         download_path = os.path.join(os.getcwd(), 'downloads')
@@ -34,7 +34,7 @@ class Crawler:
     def init_webdriver(self):
         """Initialize a new WebDriver session."""
         wb = webdriver.Chrome(options=self.options)
-        wb.implicitly_wait(10)
+        wb.implicitly_wait(50)
         wb.get("https://bdsp2.pertanian.go.id/bdsp/id/lokasi")
         return wb
     
@@ -146,7 +146,7 @@ class DistrictCrawler(Crawler):
                     winsound.Beep(1000,1800)
                     raise RuntimeError("Max retries reached. Element not found or page load failed.")
 
-
+        
         #download table(html)
         # Click the search element
         search_button = WebDriverWait(wb, 10).until(
@@ -161,7 +161,7 @@ class DistrictCrawler(Crawler):
                     wb = self.init_webdriver()
                     
                     
-        table = WebDriverWait(wb, 40).until(
+        table = WebDriverWait(wb, 50).until(
             EC.presence_of_element_located((By.XPATH, "//*[@id='example']"))
         )
 

@@ -11,6 +11,7 @@ class Service:
         self.crop_name = {}
         self.indicator_eng = {
             "LUAS PANEN": "harvest area (Ha)",
+            "LUAS AREAL": "Area (Ha)",
             "PRODUKSI": "production (Ton)",
             "PRODUKTIVITAS": "productivity (Quintal/Ha)"
         }
