@@ -5,22 +5,6 @@ import pandas as pd
 # folder_path = os.path.join(os.getcwd(),"downloads","area")
 
 
-# # Iterate over each file in the folder
-# for file in os.listdir(folder_path):
-#     if file.endswith('.xlsx'):
-#         file_path = os.path.join(folder_path, file)
-#         download_path = os.path.join(os.getcwd(),"rearranged","area",file)
-#         # Read the Excel file
-#         df = pd.read_excel(file_path)
-        
-#         # Remove columns where all values are zero
-#         df = df.loc[:, (df != 0).any(axis=0)]
-        
-#         # Save the modified DataFrame back to the Excel file
-#         df.to_excel(download_path, index=False)
-#         print(f'Processed and saved {file}')
-
-# print("All files have been processed.")
 
 ####改这里的位置"area","production","harvest area"
 #注意因为rearranged下你写了两个名字,没有harvest. 所以你需要这里也修改一下

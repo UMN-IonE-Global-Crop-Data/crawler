@@ -3,6 +3,23 @@ import glob
 import os
 from winsound import Beep
 
+def clean_missing(raw,cropnm,province):
+# Identify columns where all values are 0
+    columns_all_zero = raw.columns[(df == 0).all()].tolist()
+
+    # Remove these columns from the dataframe
+    df_cleaned = raw.drop(columns=columns_all_zero)
+
+    # Write the column names of the removed columns to a text file
+    removed_columns_file = 'missing years.txt'
+    with open(removed_columns_file, 'a') as file:
+        file.write(f"\n{cropnm} {province}: \n")
+        for column in columns_all_zero:
+            file.write(f"{column} ")
+    print(f"{cropnm} {province} is cleared")
+    return(df_cleaned)
+
+
 def get_cropnmList(folder_path):
     file_list = glob.glob(folder_path)
     cropnm_list = []
@@ -83,17 +100,22 @@ def remove_zero(file_path):
 # list_area = glob.glob(path_area)
 # list_prod = glob.glob(path_prod)
 
-folder_path = os.path.join(os.getcwd(),'rearranged','by cropnm','final')
-output_path = os.path.join(os.getcwd(),'rearranged','by cropnm','final')
+#输入path
+folder_path = os.path.join(os.getcwd(),'downloads','production')
+output_path = os.path.join(os.getcwd(),'wide cleaned','production')
 file_path = os.path.join(folder_path,'*.xlsx')
 file_list = glob.glob(file_path)
-columns_to_delete = ['Unnamed: 0', 'Province_y','Cropnm_y']
+#columns_to_delete = ['Unnamed: 0', 'Province_y','Cropnm_y']
 for file in file_list:
     name = os.path.basename(file)
+    name1 = name.split('.')[0]
+    parts = name1.split('_')
     df = pd.read_excel(file)
-    df.drop(columns=[col for col in columns_to_delete if col in df.columns], inplace=True)
-    df.rename(columns={'Province_x': 'Province','Cropnm_x':'Cropnm'},inplace=True)
-    df.to_excel(os.path.join(folder_path,name),index=False)
+    #输入你的函数
+    df = clean_missing(df,parts[0],parts[2])
+    #df.drop(columns=[col for col in columns_to_delete if col in df.columns], inplace=True)
+    #df.rename(columns={'Province_x': 'Province','Cropnm_x':'Cropnm'},inplace=True)
+    df.to_excel(os.path.join(output_path,name),index=False)
     print(f"{name} is good")
 
 Beep(1000,1000)
