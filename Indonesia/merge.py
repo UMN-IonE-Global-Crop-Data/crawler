@@ -3,9 +3,21 @@ import glob
 import os
 from winsound import Beep
 
+
 def clean_missing(raw,cropnm,province):
+    """
+    Rmove the columns that values are all zero, and write down the crop name, province and removed years in the 'missing years.txt'
+
+    Parameters: 
+    raw(DataFrame)
+    cropnm(str)
+    province(str)
+
+    Return: DataFrame
+    """
+    
 # Identify columns where all values are 0
-    columns_all_zero = raw.columns[(df == 0).all()].tolist()
+    columns_all_zero = raw.columns[(raw == 0).all()].tolist()
 
     # Remove these columns from the dataframe
     df_cleaned = raw.drop(columns=columns_all_zero)
@@ -32,7 +44,10 @@ def get_cropnmList(folder_path):
             cropnm_list.append(cropnm)
     return(cropnm_list)
 
-def merge(cropnm, directory_path,output_path):
+def merge_cropnm(cropnm, directory_path,output_path):
+    """
+    Traverse through the folder and merge the excel files by cropnm, and export the file in a new folder
+    """
     # Use glob to find all Excel files that start with "banana"
     file_pattern = os.path.join(directory_path, f'{cropnm}_*.xlsx')
     file_list = glob.glob(file_pattern)
@@ -51,7 +66,7 @@ def merge(cropnm, directory_path,output_path):
     combined_df = pd.concat(dfs, ignore_index=True)
 
     # Save the combined DataFrame to a new Excel file
-    output_filename = os.path.join(output_path, f'{cropnm}_area.xlsx')
+    output_filename = os.path.join(output_path, f'{cropnm}.xlsx')
     combined_df.to_excel(output_filename, index=False)
 
     print(f'Combined file saved as {output_filename}')
@@ -101,41 +116,44 @@ def remove_zero(file_path):
 # list_prod = glob.glob(path_prod)
 
 #输入path
-folder_path = os.path.join(os.getcwd(),'downloads','production')
-output_path = os.path.join(os.getcwd(),'wide cleaned','production')
+folder_path = os.path.join(os.getcwd(),'rearranged','cleaned','by cropnm')
+output_path = os.path.join(os.getcwd(),'rearranged','cleaned','by cropnm','joined')
 file_path = os.path.join(folder_path,'*.xlsx')
 file_list = glob.glob(file_path)
-#columns_to_delete = ['Unnamed: 0', 'Province_y','Cropnm_y']
-for file in file_list:
-    name = os.path.basename(file)
-    name1 = name.split('.')[0]
-    parts = name1.split('_')
-    df = pd.read_excel(file)
-    #输入你的函数
-    df = clean_missing(df,parts[0],parts[2])
-    #df.drop(columns=[col for col in columns_to_delete if col in df.columns], inplace=True)
-    #df.rename(columns={'Province_x': 'Province','Cropnm_x':'Cropnm'},inplace=True)
-    df.to_excel(os.path.join(output_path,name),index=False)
-    print(f"{name} is good")
+# #columns_to_delete = ['Unnamed: 0', 'Province_y','Cropnm_y']
+# for file in file_list:
+#     name = os.path.basename(file)
+#     name1 = name.split('.')[0]
+#     parts = name1.split('_')
+#     df = pd.read_excel(file)
+#     #输入你的函数
+#     df = clean_missing(df,parts[0],parts[2])
+#     #df.drop(columns=[col for col in columns_to_delete if col in df.columns], inplace=True)
+#     #df.rename(columns={'Province_x': 'Province','Cropnm_x':'Cropnm'},inplace=True)
+#     df.to_excel(os.path.join(output_path,name),index=False)
+#     print(f"{name} is good")
 
-Beep(1000,1000)
-
-
-## Join the production and area
-# for file_l, file_r in zip(list_prod,list_area):
-#     name = os.path.basename(file_l)
-#     cropnm = name.split('_')[0]
-#     merged_df = big_join(file_l, file_r, id_columns = ['Location(Lokasi)', 'Year'])
-#     merged_df.to_excel(os.path.join(output_path,f'{cropnm}.xlsx'), index = False)
-#     print(f"Merge completed and saved to {cropnm}.xlsx")
 # Beep(1000,1000)
 
 
+# Join the production and area
+list_prod = glob.glob(os.path.join(folder_path,'production','*.xlsx'))
+list_area = glob.glob(os.path.join(folder_path,'area','*.xlsx'))
 
-## get crop names in the folder
-# crop_list = get_cropnmList(os.path.join(path_start,'*.xlsx'))
+for file_l, file_r in zip(list_prod,list_area):
+    name = os.path.basename(file_l)
+    cropnm = name.split('_')[0]
+    merged_df = big_join(file_l, file_r, id_columns = ['Location(Lokasi)', 'Year'])
+    merged_df.to_excel(os.path.join(output_path,f'{cropnm}.xlsx'), index = False)
+    print(f"Merge completed and saved to {cropnm}.xlsx")
+Beep(1000,1000)
+
+
+
+# # get crop names in the folder
+# crop_list = get_cropnmList(os.path.join(folder_path,'*.xlsx'))
 # print(crop_list)
-
-##Merge by crop name
+# print(folder_path)
+# #Merge by crop name
 # for crop in crop_list:
-#     merge(crop, path_start,path_end)
+#     merge_cropnm(crop, folder_path,output_path)

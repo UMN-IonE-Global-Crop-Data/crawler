@@ -8,11 +8,11 @@ import pandas as pd
 
 ####改这里的位置"area","production","harvest area"
 #注意因为rearranged下你写了两个名字,没有harvest. 所以你需要这里也修改一下
-input = "production"
+input = "area"
 # Load the original Excel file
-folder_path = os.path.join(os.getcwd(),"downloads",input)
+folder_path = os.path.join(os.getcwd(),"wide cleaned",input)
 # set output path
-output_path = os.path.join(os.getcwd(),"rearranged","production")
+output_path = os.path.join(os.getcwd(),"rearranged","cleaned",input)
 #list storing the empty files' name
 empty_list = []
 
@@ -34,10 +34,16 @@ for file in os.listdir(folder_path):
     data = data.iloc[:-1, :]
 
     if data.empty:
+            with open("empty files.txt",'a') as file:
+              file.write(f"\n{name}")
             empty_list.append(name)
             print(f"No data to process in {file}. Skipping...")
             continue
-
+    if data.shape[1] == 1:
+         with open("all zeros files.txt",'a') as file:
+              file.write(f"\n{name}")
+         print(f"{file} is all zero. Skipping...")
+         continue
     # Melt the dataframe to change from wide to long format, using 'Lokasi' as the identifier
     long_format_data = data.melt(id_vars=['Lokasi'], var_name='Year', value_name=input)
 
