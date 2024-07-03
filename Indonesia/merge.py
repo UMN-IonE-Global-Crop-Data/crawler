@@ -102,6 +102,31 @@ def remove_zero(file_path):
 
     return(df_filtered)
 
+def outer_adjust(file_path):
+    """
+    remove the extra columns and complete the province columns
+    """
+    df = pd.read_excel(file_path)
+    name = os.path.basename(file_path).split('.')[0] #get cropnm to fill in later
+
+    #complete missing provinces:
+    for index, row in df.iterrows():
+        if pd.isna(row['Province_x']):
+            if pd.isna(row['Province_y']):
+                print("Row with missing Province_y:", row)
+                break  # End the program after printing the row
+            else:
+                df.at[index, 'Province_x'] = row['Province_y']  # Fill Province_x with Province_y
+
+    #drop/insert/rename columns
+    df.drop(columns=['Cropnm_x','Cropnm_y','Province_y'],inplace=True)
+    df.insert(2,'Cropnm',name)
+    df.rename(columns={'Province_x':'Province'},inplace=True)
+
+    return df
+
+
+
 
 
 
@@ -116,37 +141,38 @@ def remove_zero(file_path):
 # list_prod = glob.glob(path_prod)
 
 #输入path
-folder_path = os.path.join(os.getcwd(),'rearranged','cleaned','by cropnm')
-output_path = os.path.join(os.getcwd(),'rearranged','cleaned','by cropnm','joined')
+folder_path = os.path.join(os.getcwd(),'long cleaned','by cropnm','joined')
+output_path = os.path.join(os.getcwd(),'long cleaned','final')
 file_path = os.path.join(folder_path,'*.xlsx')
 file_list = glob.glob(file_path)
-# #columns_to_delete = ['Unnamed: 0', 'Province_y','Cropnm_y']
-# for file in file_list:
-#     name = os.path.basename(file)
-#     name1 = name.split('.')[0]
-#     parts = name1.split('_')
-#     df = pd.read_excel(file)
-#     #输入你的函数
-#     df = clean_missing(df,parts[0],parts[2])
-#     #df.drop(columns=[col for col in columns_to_delete if col in df.columns], inplace=True)
-#     #df.rename(columns={'Province_x': 'Province','Cropnm_x':'Cropnm'},inplace=True)
-#     df.to_excel(os.path.join(output_path,name),index=False)
-#     print(f"{name} is good")
+#columns_to_delete = ['Unnamed: 0', 'Province_y','Cropnm_y']
+for file in file_list:
+    name = os.path.basename(file)
+    # name1 = name.split('.')[0]
+    # parts = name1.split('_')
+    # df = pd.read_excel(file)
+    #输入你的函数
+    df=outer_adjust(file)
+    #df.drop(columns=[col for col in columns_to_delete if col in df.columns], inplace=True)
+    #df.rename(columns={'Province_x': 'Province','Cropnm_x':'Cropnm'},inplace=True)
+    df.to_excel(os.path.join(output_path,name),index=False)
+    print(f"{name} is good")
 
-# Beep(1000,1000)
-
-
-# Join the production and area
-list_prod = glob.glob(os.path.join(folder_path,'production','*.xlsx'))
-list_area = glob.glob(os.path.join(folder_path,'area','*.xlsx'))
-
-for file_l, file_r in zip(list_prod,list_area):
-    name = os.path.basename(file_l)
-    cropnm = name.split('_')[0]
-    merged_df = big_join(file_l, file_r, id_columns = ['Location(Lokasi)', 'Year'])
-    merged_df.to_excel(os.path.join(output_path,f'{cropnm}.xlsx'), index = False)
-    print(f"Merge completed and saved to {cropnm}.xlsx")
 Beep(1000,1000)
+
+
+# # Join the production and area
+# list_prod = glob.glob(os.path.join(folder_path,'production','*.xlsx'))
+# list_area = glob.glob(os.path.join(folder_path,'area','*.xlsx'))
+
+# for file_l, file_r in zip(list_prod,list_area):
+#     name = os.path.basename(file_l)
+#     cropnm = name.split('_')[0]
+#     merged_df = big_join(file_l, file_r, id_columns = ['Location(Lokasi)', 'Year'])
+#     merged_df.to_excel(os.path.join(output_path
+#                                     ,f'{cropnm}.xlsx'), index = False)
+#     print(f"Merge completed and saved to {cropnm}.xlsx")
+# Beep(1000,1000)
 
 
 
