@@ -1,0 +1,462 @@
+coconut_production (Ton)_Daerah Khusus Ibukota Jakarta
+cotton_production (Ton)_Aceh
+cotton_production (Ton)_Banten
+cotton_production (Ton)_Bengkulu
+cotton_production (Ton)_Daerah Khusus Ibukota Jakarta
+cotton_production (Ton)_Gorontalo
+cotton_production (Ton)_Jambi
+cotton_production (Ton)_Jawa Barat
+cotton_production (Ton)_Kalimantan Barat
+cotton_production (Ton)_Kalimantan Selatan
+cotton_production (Ton)_Kalimantan Tengah
+cotton_production (Ton)_Kalimantan Timur
+cotton_production (Ton)_Kalimantan Utara
+cotton_production (Ton)_Kepulauan Bangka Belitung
+cotton_production (Ton)_Kepulauan Riau
+cotton_production (Ton)_Lampung
+cotton_production (Ton)_Maluku Utara
+cotton_production (Ton)_Maluku
+cotton_production (Ton)_Papua Barat
+cotton_production (Ton)_Papua
+cotton_production (Ton)_Riau
+cotton_production (Ton)_Sulawesi Barat
+cotton_production (Ton)_Sulawesi Tengah
+cotton_production (Ton)_Sulawesi Tenggara
+cotton_production (Ton)_Sulawesi Utara
+cotton_production (Ton)_Sumatera Barat
+cotton_production (Ton)_Sumatera Selatan
+cotton_production (Ton)_Sumatera Utara
+deres coconut_production (Ton)_Aceh
+deres coconut_production (Ton)_Banten
+deres coconut_production (Ton)_Bengkulu
+deres coconut_production (Ton)_Daerah Khusus Ibukota Jakarta
+deres coconut_production (Ton)_Gorontalo
+deres coconut_production (Ton)_Jambi
+deres coconut_production (Ton)_Jawa Timur
+deres coconut_production (Ton)_Kalimantan Selatan
+deres coconut_production (Ton)_Kalimantan Tengah
+deres coconut_production (Ton)_Kalimantan Timur
+deres coconut_production (Ton)_Kalimantan Utara
+deres coconut_production (Ton)_Kepulauan Bangka Belitung
+deres coconut_production (Ton)_Kepulauan Riau
+deres coconut_production (Ton)_Maluku Utara
+deres coconut_production (Ton)_Maluku
+deres coconut_production (Ton)_Nusa Tenggara Barat
+deres coconut_production (Ton)_Nusa Tenggara Timur
+deres coconut_production (Ton)_Papua Barat
+deres coconut_production (Ton)_Sulawesi Barat
+deres coconut_production (Ton)_Sulawesi Tengah
+deres coconut_production (Ton)_Sulawesi Tenggara
+deres coconut_production (Ton)_Sulawesi Utara
+deres coconut_production (Ton)_Sumatera Barat
+deres coconut_production (Ton)_Sumatera Selatan
+deres coconut_production (Ton)_Sumatera Utara
+green beans_production (Ton)_Daerah Khusus Ibukota Jakarta
+hybrid coconut_production (Ton)_Bengkulu
+hybrid coconut_production (Ton)_Daerah Istimewa Yogyakarta
+hybrid coconut_production (Ton)_Daerah Khusus Ibukota Jakarta
+hybrid coconut_production (Ton)_Jawa Timur
+hybrid coconut_production (Ton)_Kalimantan Tengah
+hybrid coconut_production (Ton)_Kalimantan Timur
+hybrid coconut_production (Ton)_Kalimantan Utara
+hybrid coconut_production (Ton)_Kepulauan Bangka Belitung
+hybrid coconut_production (Ton)_Maluku Utara
+hybrid coconut_production (Ton)_Nusa Tenggara Barat
+hybrid coconut_production (Ton)_Nusa Tenggara Timur
+hybrid coconut_production (Ton)_Papua Barat
+hybrid coconut_production (Ton)_Sumatera Barat
+hybrid coconut_production (Ton)_Sumatera Selatan
+hybrid coconut_production (Ton)_Sumatera Utara
+mung bean_production (Ton)_Daerah Khusus Ibukota Jakarta
+oil palm_production (Ton)_Bali
+oil palm_production (Ton)_Daerah Istimewa Yogyakarta
+oil palm_production (Ton)_Daerah Khusus Ibukota Jakarta
+oil palm_production (Ton)_Jawa Tengah
+oil palm_production (Ton)_Jawa Timur
+oil palm_production (Ton)_Maluku Utara
+oil palm_production (Ton)_Nusa Tenggara Barat
+oil palm_production (Ton)_Nusa Tenggara Timur
+oil palm_production (Ton)_Sulawesi Utara
+palm_production (Ton)_Sulawesi Barat
+potato_production (Ton)_Daerah Khusus Ibukota Jakarta
+potato_production (Ton)_Gorontalo
+potato_production (Ton)_Kalimantan Barat
+potato_production (Ton)_Kalimantan Selatan
+potato_production (Ton)_Kalimantan Tengah
+potato_production (Ton)_Kalimantan Timur
+potato_production (Ton)_Kalimantan Utara
+potato_production (Ton)_Kepulauan Riau
+potato_production (Ton)_Riau
+red bean_production (Ton)_Daerah Khusus Ibukota Jakarta
+red bean_production (Ton)_Kalimantan Selatan
+red bean_production (Ton)_Kalimantan Utara
+red bean_production (Ton)_Kepulauan Riau
+rubber_production (Ton)_Daerah Khusus Ibukota Jakarta
+rubber_production (Ton)_Gorontalo
+rubber_production (Ton)_Maluku Utara
+rubber_production (Ton)_Nusa Tenggara Barat
+rubber_production (Ton)_Nusa Tenggara Timur
+rubber_production (Ton)_Sulawesi Utara
+soybean_production (Ton)_Daerah Khusus Ibukota Jakarta
+sugarcane_production (Ton)_Banten
+sugarcane_production (Ton)_Daerah Khusus Ibukota Jakarta
+sugarcane_production (Ton)_Kalimantan Tengah
+sugarcane_production (Ton)_Kalimantan Timur
+sugarcane_production (Ton)_Kalimantan Utara
+sugarcane_production (Ton)_Kepulauan Bangka Belitung
+sugarcane_production (Ton)_Kepulauan Riau
+sugarcane_production (Ton)_Maluku Utara
+sugarcane_production (Ton)_Maluku
+sugarcane_production (Ton)_Papua Barat
+sugarcane_production (Ton)_Papua
+sugarcane_production (Ton)_Riau
+sugarcane_production (Ton)_Sulawesi Barat
+sugarcane_production (Ton)_Sulawesi Tengah
+sugarcane_production (Ton)_Sulawesi Utara
+tall coconut_production (Ton)_Daerah Khusus Ibukota Jakarta
+tea_production (Ton)_Bali
+tea_production (Ton)_Daerah Khusus Ibukota Jakarta
+tea_production (Ton)_Gorontalo
+tea_production (Ton)_Kalimantan Barat
+tea_production (Ton)_Kalimantan Selatan
+tea_production (Ton)_Kalimantan Tengah
+tea_production (Ton)_Kalimantan Timur
+tea_production (Ton)_Kalimantan Utara
+tea_production (Ton)_Kepulauan Bangka Belitung
+tea_production (Ton)_Kepulauan Riau
+tea_production (Ton)_Lampung
+tea_production (Ton)_Maluku Utara
+tea_production (Ton)_Maluku
+tea_production (Ton)_Nusa Tenggara Barat
+tea_production (Ton)_Nusa Tenggara Timur
+tea_production (Ton)_Papua Barat
+tea_production (Ton)_Papua
+tea_production (Ton)_Riau
+tea_production (Ton)_Sulawesi Barat
+tea_production (Ton)_Sulawesi Tengah
+tea_production (Ton)_Sulawesi Tenggara
+tea_production (Ton)_Sulawesi Utara
+upland rice_production (Ton)_Daerah Khusus Ibukota Jakarta
+upland rice_production (Ton)_Kepulauan Riau
+coconut_Area (Ha)_Daerah Khusus Ibukota Jakarta
+cotton_Area (Ha)_Aceh
+cotton_Area (Ha)_Banten
+cotton_Area (Ha)_Bengkulu
+cotton_Area (Ha)_Daerah Khusus Ibukota Jakarta
+cotton_Area (Ha)_Gorontalo
+cotton_Area (Ha)_Jambi
+cotton_Area (Ha)_Jawa Barat
+cotton_Area (Ha)_Kalimantan Barat
+cotton_Area (Ha)_Kalimantan Selatan
+cotton_Area (Ha)_Kalimantan Tengah
+cotton_Area (Ha)_Kalimantan Timur
+cotton_Area (Ha)_Kalimantan Utara
+cotton_Area (Ha)_Kepulauan Bangka Belitung
+cotton_Area (Ha)_Kepulauan Riau
+cotton_Area (Ha)_Lampung
+cotton_Area (Ha)_Maluku Utara
+cotton_Area (Ha)_Maluku
+cotton_Area (Ha)_Papua Barat
+cotton_Area (Ha)_Papua
+cotton_Area (Ha)_Riau
+cotton_Area (Ha)_Sulawesi Barat
+cotton_Area (Ha)_Sulawesi Tengah
+cotton_Area (Ha)_Sulawesi Tenggara
+cotton_Area (Ha)_Sulawesi Utara
+cotton_Area (Ha)_Sumatera Barat
+cotton_Area (Ha)_Sumatera Selatan
+cotton_Area (Ha)_Sumatera Utara
+deres coconut_Area (Ha)_Aceh
+deres coconut_Area (Ha)_Banten
+deres coconut_Area (Ha)_Bengkulu
+deres coconut_Area (Ha)_Daerah Khusus Ibukota Jakarta
+deres coconut_Area (Ha)_Gorontalo
+deres coconut_Area (Ha)_Jambi
+deres coconut_Area (Ha)_Jawa Timur
+deres coconut_Area (Ha)_Kalimantan Selatan
+deres coconut_Area (Ha)_Kalimantan Tengah
+deres coconut_Area (Ha)_Kalimantan Timur
+deres coconut_Area (Ha)_Kalimantan Utara
+deres coconut_Area (Ha)_Kepulauan Bangka Belitung
+deres coconut_Area (Ha)_Kepulauan Riau
+deres coconut_Area (Ha)_Maluku Utara
+deres coconut_Area (Ha)_Maluku
+deres coconut_Area (Ha)_Nusa Tenggara Barat
+deres coconut_Area (Ha)_Nusa Tenggara Timur
+deres coconut_Area (Ha)_Papua Barat
+deres coconut_Area (Ha)_Sulawesi Barat
+deres coconut_Area (Ha)_Sulawesi Tengah
+deres coconut_Area (Ha)_Sulawesi Tenggara
+deres coconut_Area (Ha)_Sulawesi Utara
+deres coconut_Area (Ha)_Sumatera Barat
+deres coconut_Area (Ha)_Sumatera Selatan
+deres coconut_Area (Ha)_Sumatera Utara
+green beans_harvest area (Ha)_Daerah Khusus Ibukota Jakarta
+hybrid coconut_Area (Ha)_Bengkulu
+hybrid coconut_Area (Ha)_Daerah Istimewa Yogyakarta
+hybrid coconut_Area (Ha)_Daerah Khusus Ibukota Jakarta
+hybrid coconut_Area (Ha)_Jawa Timur
+hybrid coconut_Area (Ha)_Kalimantan Tengah
+hybrid coconut_Area (Ha)_Kalimantan Timur
+hybrid coconut_Area (Ha)_Kalimantan Utara
+hybrid coconut_Area (Ha)_Kepulauan Bangka Belitung
+hybrid coconut_Area (Ha)_Maluku Utara
+hybrid coconut_Area (Ha)_Nusa Tenggara Barat
+hybrid coconut_Area (Ha)_Nusa Tenggara Timur
+hybrid coconut_Area (Ha)_Papua Barat
+hybrid coconut_Area (Ha)_Sumatera Barat
+hybrid coconut_Area (Ha)_Sumatera Selatan
+hybrid coconut_Area (Ha)_Sumatera Utara
+mung bean_harvest area (Ha)_Daerah Khusus Ibukota Jakarta
+oil palm_Area (Ha)_Bali
+oil palm_Area (Ha)_Daerah Istimewa Yogyakarta
+oil palm_Area (Ha)_Daerah Khusus Ibukota Jakarta
+oil palm_Area (Ha)_Jawa Tengah
+oil palm_Area (Ha)_Jawa Timur
+oil palm_Area (Ha)_Maluku Utara
+oil palm_Area (Ha)_Nusa Tenggara Barat
+oil palm_Area (Ha)_Nusa Tenggara Timur
+oil palm_Area (Ha)_Sulawesi Utara
+palm_harvest area (Ha)_Aceh
+palm_harvest area (Ha)_Maluku
+palm_harvest area (Ha)_Papua Barat
+palm_harvest area (Ha)_Sulawesi Barat
+palm_harvest area (Ha)_Sulawesi Tenggara
+potato_harvest area (Ha)_Daerah Khusus Ibukota Jakarta
+potato_harvest area (Ha)_Gorontalo
+potato_harvest area (Ha)_Kalimantan Barat
+potato_harvest area (Ha)_Kalimantan Selatan
+potato_harvest area (Ha)_Kalimantan Tengah
+potato_harvest area (Ha)_Kalimantan Utara
+potato_harvest area (Ha)_Kepulauan Riau
+potato_harvest area (Ha)_Riau
+red bean_harvest area (Ha)_Daerah Khusus Ibukota Jakarta
+red bean_harvest area (Ha)_Kalimantan Selatan
+red bean_harvest area (Ha)_Kepulauan Riau
+rubber_Area (Ha)_Daerah Khusus Ibukota Jakarta
+rubber_Area (Ha)_Gorontalo
+rubber_Area (Ha)_Maluku Utara
+rubber_Area (Ha)_Nusa Tenggara Barat
+rubber_Area (Ha)_Nusa Tenggara Timur
+rubber_Area (Ha)_Sulawesi Utara
+soybean_harvest area (Ha)_Daerah Khusus Ibukota Jakarta
+stink bean_harvest area (Ha)_Papua Barat
+stink bean_harvest area (Ha)_Sulawesi Selatan
+stink bean_harvest area (Ha)_Sulawesi Utara
+sugarcane_Area (Ha)_Banten
+sugarcane_Area (Ha)_Daerah Khusus Ibukota Jakarta
+sugarcane_Area (Ha)_Kalimantan Tengah
+sugarcane_Area (Ha)_Kalimantan Timur
+sugarcane_Area (Ha)_Kalimantan Utara
+sugarcane_Area (Ha)_Kepulauan Bangka Belitung
+sugarcane_Area (Ha)_Kepulauan Riau
+sugarcane_Area (Ha)_Maluku
+sugarcane_Area (Ha)_Papua Barat
+sugarcane_Area (Ha)_Riau
+sugarcane_Area (Ha)_Sulawesi Barat
+sugarcane_Area (Ha)_Sulawesi Tengah
+sugarcane_Area (Ha)_Sulawesi Utara
+tall coconut_Area (Ha)_Daerah Khusus Ibukota Jakarta
+tea_Area (Ha)_Aceh
+tea_Area (Ha)_Bali
+tea_Area (Ha)_Daerah Khusus Ibukota Jakarta
+tea_Area (Ha)_Gorontalo
+tea_Area (Ha)_Kalimantan Barat
+tea_Area (Ha)_Kalimantan Selatan
+tea_Area (Ha)_Kalimantan Tengah
+tea_Area (Ha)_Kalimantan Timur
+tea_Area (Ha)_Kalimantan Utara
+tea_Area (Ha)_Kepulauan Bangka Belitung
+tea_Area (Ha)_Kepulauan Riau
+tea_Area (Ha)_Lampung
+tea_Area (Ha)_Maluku Utara
+tea_Area (Ha)_Maluku
+tea_Area (Ha)_Nusa Tenggara Barat
+tea_Area (Ha)_Nusa Tenggara Timur
+tea_Area (Ha)_Papua Barat
+tea_Area (Ha)_Papua
+tea_Area (Ha)_Riau
+tea_Area (Ha)_Sulawesi Barat
+tea_Area (Ha)_Sulawesi Tengah
+tea_Area (Ha)_Sulawesi Tenggara
+tea_Area (Ha)_Sulawesi Utara
+upland rice_harvest area (Ha)_Daerah Khusus Ibukota Jakarta
+banana_productivity(Quintal per Ha)_Aceh
+banana_productivity(Quintal per Ha)_Banten
+banana_productivity(Quintal per Ha)_Daerah Istimewa Yogyakarta
+banana_productivity(Quintal per Ha)_Daerah Khusus Ibukota Jakarta
+banana_productivity(Quintal per Ha)_Gorontalo
+banana_productivity(Quintal per Ha)_Jambi
+banana_productivity(Quintal per Ha)_Jawa Barat
+banana_productivity(Quintal per Ha)_Jawa Tengah
+banana_productivity(Quintal per Ha)_Jawa Timur
+banana_productivity(Quintal per Ha)_Kalimantan Barat
+banana_productivity(Quintal per Ha)_Kalimantan Selatan
+banana_productivity(Quintal per Ha)_Kalimantan Tengah
+banana_productivity(Quintal per Ha)_Kalimantan Timur
+banana_productivity(Quintal per Ha)_Kalimantan Utara
+banana_productivity(Quintal per Ha)_Kepulauan Bangka Belitung
+banana_productivity(Quintal per Ha)_Kepulauan Riau
+banana_productivity(Quintal per Ha)_Lampung
+banana_productivity(Quintal per Ha)_Maluku Utara
+banana_productivity(Quintal per Ha)_Maluku
+banana_productivity(Quintal per Ha)_Nusa Tenggara Barat
+banana_productivity(Quintal per Ha)_Nusa Tenggara Timur
+banana_productivity(Quintal per Ha)_Papua Barat
+banana_productivity(Quintal per Ha)_Papua
+banana_productivity(Quintal per Ha)_Sulawesi Barat
+banana_productivity(Quintal per Ha)_Sulawesi Selatan
+banana_productivity(Quintal per Ha)_Sulawesi Tengah
+banana_productivity(Quintal per Ha)_Sulawesi Tenggara
+banana_productivity(Quintal per Ha)_Sulawesi Utara
+banana_productivity(Quintal per Ha)_Sumatera Barat
+banana_productivity(Quintal per Ha)_Sumatera Selatan
+coconut_productivity(Quintal per Ha)_Daerah Khusus Ibukota Jakarta
+cotton_productivity(Quintal per Ha)_Aceh
+cotton_productivity(Quintal per Ha)_Banten
+cotton_productivity(Quintal per Ha)_Bengkulu
+cotton_productivity(Quintal per Ha)_Daerah Khusus Ibukota Jakarta
+cotton_productivity(Quintal per Ha)_Gorontalo
+cotton_productivity(Quintal per Ha)_Jambi
+cotton_productivity(Quintal per Ha)_Jawa Barat
+cotton_productivity(Quintal per Ha)_Kalimantan Barat
+cotton_productivity(Quintal per Ha)_Kalimantan Selatan
+cotton_productivity(Quintal per Ha)_Kalimantan Tengah
+cotton_productivity(Quintal per Ha)_Kalimantan Timur
+cotton_productivity(Quintal per Ha)_Kalimantan Utara
+cotton_productivity(Quintal per Ha)_Kepulauan Bangka Belitung
+cotton_productivity(Quintal per Ha)_Kepulauan Riau
+cotton_productivity(Quintal per Ha)_Lampung
+cotton_productivity(Quintal per Ha)_Maluku Utara
+cotton_productivity(Quintal per Ha)_Maluku
+cotton_productivity(Quintal per Ha)_Papua Barat
+cotton_productivity(Quintal per Ha)_Papua
+cotton_productivity(Quintal per Ha)_Riau
+cotton_productivity(Quintal per Ha)_Sulawesi Barat
+cotton_productivity(Quintal per Ha)_Sulawesi Tengah
+cotton_productivity(Quintal per Ha)_Sulawesi Tenggara
+cotton_productivity(Quintal per Ha)_Sulawesi Utara
+cotton_productivity(Quintal per Ha)_Sumatera Barat
+cotton_productivity(Quintal per Ha)_Sumatera Selatan
+cotton_productivity(Quintal per Ha)_Sumatera Utara
+deres coconut_productivity(Quintal per Ha)_Aceh
+deres coconut_productivity(Quintal per Ha)_Banten
+deres coconut_productivity(Quintal per Ha)_Bengkulu
+deres coconut_productivity(Quintal per Ha)_Daerah Khusus Ibukota Jakarta
+deres coconut_productivity(Quintal per Ha)_Gorontalo
+deres coconut_productivity(Quintal per Ha)_Jambi
+deres coconut_productivity(Quintal per Ha)_Jawa Timur
+deres coconut_productivity(Quintal per Ha)_Kalimantan Selatan
+deres coconut_productivity(Quintal per Ha)_Kalimantan Tengah
+deres coconut_productivity(Quintal per Ha)_Kalimantan Timur
+deres coconut_productivity(Quintal per Ha)_Kalimantan Utara
+deres coconut_productivity(Quintal per Ha)_Kepulauan Bangka Belitung
+deres coconut_productivity(Quintal per Ha)_Kepulauan Riau
+deres coconut_productivity(Quintal per Ha)_Lampung
+deres coconut_productivity(Quintal per Ha)_Maluku Utara
+deres coconut_productivity(Quintal per Ha)_Maluku
+deres coconut_productivity(Quintal per Ha)_Nusa Tenggara Barat
+deres coconut_productivity(Quintal per Ha)_Nusa Tenggara Timur
+deres coconut_productivity(Quintal per Ha)_Papua Barat
+deres coconut_productivity(Quintal per Ha)_Papua
+deres coconut_productivity(Quintal per Ha)_Riau
+deres coconut_productivity(Quintal per Ha)_Sulawesi Barat
+deres coconut_productivity(Quintal per Ha)_Sulawesi Selatan
+deres coconut_productivity(Quintal per Ha)_Sulawesi Tengah
+deres coconut_productivity(Quintal per Ha)_Sulawesi Tenggara
+deres coconut_productivity(Quintal per Ha)_Sulawesi Utara
+deres coconut_productivity(Quintal per Ha)_Sumatera Barat
+deres coconut_productivity(Quintal per Ha)_Sumatera Selatan
+deres coconut_productivity(Quintal per Ha)_Sumatera Utara
+green beans_productivity(Quintal per Ha)_Daerah Khusus Ibukota Jakarta
+hybrid coconut_productivity(Quintal per Ha)_Bengkulu
+hybrid coconut_productivity(Quintal per Ha)_Daerah Istimewa Yogyakarta
+hybrid coconut_productivity(Quintal per Ha)_Daerah Khusus Ibukota Jakarta
+hybrid coconut_productivity(Quintal per Ha)_Jawa Timur
+hybrid coconut_productivity(Quintal per Ha)_Kalimantan Tengah
+hybrid coconut_productivity(Quintal per Ha)_Kalimantan Timur
+hybrid coconut_productivity(Quintal per Ha)_Kalimantan Utara
+hybrid coconut_productivity(Quintal per Ha)_Kepulauan Bangka Belitung
+hybrid coconut_productivity(Quintal per Ha)_Maluku Utara
+hybrid coconut_productivity(Quintal per Ha)_Nusa Tenggara Barat
+hybrid coconut_productivity(Quintal per Ha)_Nusa Tenggara Timur
+hybrid coconut_productivity(Quintal per Ha)_Papua Barat
+hybrid coconut_productivity(Quintal per Ha)_Sumatera Barat
+hybrid coconut_productivity(Quintal per Ha)_Sumatera Selatan
+hybrid coconut_productivity(Quintal per Ha)_Sumatera Utara
+mung bean_productivity(Quintal per Ha)_Daerah Khusus Ibukota Jakarta
+mung bean_productivity(Quintal per Ha)_Kepulauan Riau
+oil palm_productivity(Quintal per Ha)_Bali
+oil palm_productivity(Quintal per Ha)_Daerah Istimewa Yogyakarta
+oil palm_productivity(Quintal per Ha)_Daerah Khusus Ibukota Jakarta
+oil palm_productivity(Quintal per Ha)_Jawa Tengah
+oil palm_productivity(Quintal per Ha)_Jawa Timur
+oil palm_productivity(Quintal per Ha)_Maluku Utara
+oil palm_productivity(Quintal per Ha)_Nusa Tenggara Barat
+oil palm_productivity(Quintal per Ha)_Nusa Tenggara Timur
+oil palm_productivity(Quintal per Ha)_Sulawesi Utara
+palm_productivity(Quintal per Ha)_Sulawesi Barat
+potato_productivity(Quintal per Ha)_Daerah Khusus Ibukota Jakarta
+potato_productivity(Quintal per Ha)_Gorontalo
+potato_productivity(Quintal per Ha)_Kalimantan Barat
+potato_productivity(Quintal per Ha)_Kalimantan Selatan
+potato_productivity(Quintal per Ha)_Kalimantan Tengah
+potato_productivity(Quintal per Ha)_Kalimantan Utara
+potato_productivity(Quintal per Ha)_Kepulauan Riau
+potato_productivity(Quintal per Ha)_Riau
+red bean_productivity(Quintal per Ha)_Daerah Khusus Ibukota Jakarta
+red bean_productivity(Quintal per Ha)_Kalimantan Selatan
+red bean_productivity(Quintal per Ha)_Kepulauan Bangka Belitung
+red bean_productivity(Quintal per Ha)_Kepulauan Riau
+rubber_productivity(Quintal per Ha)_Daerah Khusus Ibukota Jakarta
+rubber_productivity(Quintal per Ha)_Gorontalo
+rubber_productivity(Quintal per Ha)_Maluku Utara
+rubber_productivity(Quintal per Ha)_Nusa Tenggara Barat
+rubber_productivity(Quintal per Ha)_Nusa Tenggara Timur
+rubber_productivity(Quintal per Ha)_Sulawesi Utara
+soybean_productivity(Quintal per Ha)_Daerah Khusus Ibukota Jakarta
+stink bean_productivity(Quintal per Ha)_Maluku Utara
+stink bean_productivity(Quintal per Ha)_Papua Barat
+stink bean_productivity(Quintal per Ha)_Sulawesi Selatan
+stink bean_productivity(Quintal per Ha)_Sulawesi Tenggara
+stink bean_productivity(Quintal per Ha)_Sulawesi Utara
+sugarcane_productivity(Quintal per Ha)_Banten
+sugarcane_productivity(Quintal per Ha)_Daerah Khusus Ibukota Jakarta
+sugarcane_productivity(Quintal per Ha)_Kalimantan Tengah
+sugarcane_productivity(Quintal per Ha)_Kalimantan Timur
+sugarcane_productivity(Quintal per Ha)_Kalimantan Utara
+sugarcane_productivity(Quintal per Ha)_Kepulauan Bangka Belitung
+sugarcane_productivity(Quintal per Ha)_Kepulauan Riau
+sugarcane_productivity(Quintal per Ha)_Maluku Utara
+sugarcane_productivity(Quintal per Ha)_Maluku
+sugarcane_productivity(Quintal per Ha)_Papua Barat
+sugarcane_productivity(Quintal per Ha)_Papua
+sugarcane_productivity(Quintal per Ha)_Riau
+sugarcane_productivity(Quintal per Ha)_Sulawesi Barat
+sugarcane_productivity(Quintal per Ha)_Sulawesi Tengah
+sugarcane_productivity(Quintal per Ha)_Sulawesi Utara
+tall coconut_productivity(Quintal per Ha)_Daerah Khusus Ibukota Jakarta
+tea_productivity(Quintal per Ha)_Bali
+tea_productivity(Quintal per Ha)_Daerah Khusus Ibukota Jakarta
+tea_productivity(Quintal per Ha)_Gorontalo
+tea_productivity(Quintal per Ha)_Kalimantan Barat
+tea_productivity(Quintal per Ha)_Kalimantan Selatan
+tea_productivity(Quintal per Ha)_Kalimantan Tengah
+tea_productivity(Quintal per Ha)_Kalimantan Timur
+tea_productivity(Quintal per Ha)_Kalimantan Utara
+tea_productivity(Quintal per Ha)_Kepulauan Bangka Belitung
+tea_productivity(Quintal per Ha)_Kepulauan Riau
+tea_productivity(Quintal per Ha)_Lampung
+tea_productivity(Quintal per Ha)_Maluku Utara
+tea_productivity(Quintal per Ha)_Maluku
+tea_productivity(Quintal per Ha)_Nusa Tenggara Barat
+tea_productivity(Quintal per Ha)_Nusa Tenggara Timur
+tea_productivity(Quintal per Ha)_Papua Barat
+tea_productivity(Quintal per Ha)_Papua
+tea_productivity(Quintal per Ha)_Riau
+tea_productivity(Quintal per Ha)_Sulawesi Barat
+tea_productivity(Quintal per Ha)_Sulawesi Tengah
+tea_productivity(Quintal per Ha)_Sulawesi Tenggara
+tea_productivity(Quintal per Ha)_Sulawesi Utara
+upland rice_productivity(Quintal per Ha)_Daerah Khusus Ibukota Jakarta
+upland rice_productivity(Quintal per Ha)_Kepulauan Riau

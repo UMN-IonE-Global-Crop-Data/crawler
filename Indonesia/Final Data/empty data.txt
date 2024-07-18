@@ -1,0 +1,324 @@
+banana_production (Ton)_Papua Barat Daya
+banana_production (Ton)_Papua Pegunungan
+banana_production (Ton)_Papua Selatan
+banana_production (Ton)_Papua Tengah
+cassava_production (Ton)_Papua Barat Daya
+cassava_production (Ton)_Papua Pegunungan
+cassava_production (Ton)_Papua Selatan
+cassava_production (Ton)_Papua Tengah
+coconut_production (Ton)_Papua Barat Daya
+coconut_production (Ton)_Papua Pegunungan
+coconut_production (Ton)_Papua Selatan
+coconut_production (Ton)_Papua Tengah
+corn_production (Ton)_Papua Barat Daya
+corn_production (Ton)_Papua Pegunungan
+corn_production (Ton)_Papua Selatan
+corn_production (Ton)_Papua Tengah
+cotton_production (Ton)_Papua Barat Daya
+cotton_production (Ton)_Papua Pegunungan
+cotton_production (Ton)_Papua Selatan
+cotton_production (Ton)_Papua Tengah
+deres coconut_production (Ton)_Papua Barat Daya
+deres coconut_production (Ton)_Papua Pegunungan
+deres coconut_production (Ton)_Papua Selatan
+deres coconut_production (Ton)_Papua Tengah
+green beans_production (Ton)_Papua Barat Daya
+green beans_production (Ton)_Papua Pegunungan
+green beans_production (Ton)_Papua Selatan
+green beans_production (Ton)_Papua Tengah
+hybrid coconut_production (Ton)_Papua Barat Daya
+hybrid coconut_production (Ton)_Papua Pegunungan
+hybrid coconut_production (Ton)_Papua Selatan
+hybrid coconut_production (Ton)_Papua Tengah
+long bean_production (Ton)_Papua Barat Daya
+long bean_production (Ton)_Papua Pegunungan
+long bean_production (Ton)_Papua Selatan
+long bean_production (Ton)_Papua Tengah
+mung bean_production (Ton)_Papua Barat Daya
+mung bean_production (Ton)_Papua Pegunungan
+mung bean_production (Ton)_Papua Selatan
+mung bean_production (Ton)_Papua Tengah
+oil palm_production (Ton)_Papua Barat Daya
+oil palm_production (Ton)_Papua Pegunungan
+oil palm_production (Ton)_Papua Selatan
+oil palm_production (Ton)_Papua Tengah
+paddy rice_production (Ton)_Papua Barat Daya
+paddy rice_production (Ton)_Papua Pegunungan
+paddy rice_production (Ton)_Papua Selatan
+paddy rice_production (Ton)_Papua Tengah
+palm_production (Ton)_Papua Barat Daya
+palm_production (Ton)_Papua Pegunungan
+palm_production (Ton)_Papua Selatan
+palm_production (Ton)_Papua Tengah
+peanut_production (Ton)_Papua Barat Daya
+peanut_production (Ton)_Papua Pegunungan
+peanut_production (Ton)_Papua Selatan
+peanut_production (Ton)_Papua Tengah
+potato_production (Ton)_Papua Barat Daya
+potato_production (Ton)_Papua Pegunungan
+potato_production (Ton)_Papua Selatan
+potato_production (Ton)_Papua Tengah
+red bean_production (Ton)_Papua Barat Daya
+red bean_production (Ton)_Papua Pegunungan
+red bean_production (Ton)_Papua Selatan
+red bean_production (Ton)_Papua Tengah
+red onion_production (Ton)_Papua Barat Daya
+red onion_production (Ton)_Papua Pegunungan
+red onion_production (Ton)_Papua Selatan
+red onion_production (Ton)_Papua Tengah
+rice_production (Ton)_Papua Barat Daya
+rice_production (Ton)_Papua Pegunungan
+rice_production (Ton)_Papua Selatan
+rice_production (Ton)_Papua Tengah
+rubber_production (Ton)_Papua Barat Daya
+rubber_production (Ton)_Papua Pegunungan
+rubber_production (Ton)_Papua Selatan
+rubber_production (Ton)_Papua Tengah
+soybean_production (Ton)_Papua Barat Daya
+soybean_production (Ton)_Papua Pegunungan
+soybean_production (Ton)_Papua Selatan
+soybean_production (Ton)_Papua Tengah
+stink bean_production (Ton)_Papua Barat Daya
+stink bean_production (Ton)_Papua Pegunungan
+stink bean_production (Ton)_Papua Selatan
+stink bean_production (Ton)_Papua Tengah
+sugarcane_production (Ton)_Papua Barat Daya
+sugarcane_production (Ton)_Papua Pegunungan
+sugarcane_production (Ton)_Papua Selatan
+sugarcane_production (Ton)_Papua Tengah
+sweet potato_production (Ton)_Papua Barat Daya
+sweet potato_production (Ton)_Papua Pegunungan
+sweet potato_production (Ton)_Papua Selatan
+sweet potato_production (Ton)_Papua Tengah
+tall coconut_production (Ton)_Papua Barat Daya
+tall coconut_production (Ton)_Papua Pegunungan
+tall coconut_production (Ton)_Papua Selatan
+tall coconut_production (Ton)_Papua Tengah
+tea_production (Ton)_Papua Barat Daya
+tea_production (Ton)_Papua Pegunungan
+tea_production (Ton)_Papua Selatan
+tea_production (Ton)_Papua Tengah
+tomato_production (Ton)_Papua Barat Daya
+tomato_production (Ton)_Papua Pegunungan
+tomato_production (Ton)_Papua Selatan
+tomato_production (Ton)_Papua Tengah
+upland rice_production (Ton)_Papua Barat Daya
+upland rice_production (Ton)_Papua Pegunungan
+upland rice_production (Ton)_Papua Selatan
+upland rice_production (Ton)_Papua Tengah
+banana_harvest area (Ha)_Papua Barat Daya
+banana_harvest area (Ha)_Papua Pegunungan
+banana_harvest area (Ha)_Papua Selatan
+banana_harvest area (Ha)_Papua Tengah
+cassava_harvest area (Ha)_Papua Barat Daya
+cassava_harvest area (Ha)_Papua Pegunungan
+cassava_harvest area (Ha)_Papua Selatan
+cassava_harvest area (Ha)_Papua Tengah
+coconut_Area (Ha)_Papua Barat Daya
+coconut_Area (Ha)_Papua Pegunungan
+coconut_Area (Ha)_Papua Selatan
+coconut_Area (Ha)_Papua Tengah
+corn_harvest area (Ha)_Papua Barat Daya
+corn_harvest area (Ha)_Papua Pegunungan
+corn_harvest area (Ha)_Papua Selatan
+corn_harvest area (Ha)_Papua Tengah
+cotton_Area (Ha)_Papua Barat Daya
+cotton_Area (Ha)_Papua Pegunungan
+cotton_Area (Ha)_Papua Selatan
+cotton_Area (Ha)_Papua Tengah
+deres coconut_Area (Ha)_Papua Barat Daya
+deres coconut_Area (Ha)_Papua Pegunungan
+deres coconut_Area (Ha)_Papua Selatan
+deres coconut_Area (Ha)_Papua Tengah
+green beans_harvest area (Ha)_Papua Barat Daya
+green beans_harvest area (Ha)_Papua Pegunungan
+green beans_harvest area (Ha)_Papua Selatan
+green beans_harvest area (Ha)_Papua Tengah
+hybrid coconut_Area (Ha)_Papua Barat Daya
+hybrid coconut_Area (Ha)_Papua Pegunungan
+hybrid coconut_Area (Ha)_Papua Selatan
+hybrid coconut_Area (Ha)_Papua Tengah
+long bean_harvest area (Ha)_Papua Barat Daya
+long bean_harvest area (Ha)_Papua Pegunungan
+long bean_harvest area (Ha)_Papua Selatan
+long bean_harvest area (Ha)_Papua Tengah
+mung bean_harvest area (Ha)_Papua Barat Daya
+mung bean_harvest area (Ha)_Papua Pegunungan
+mung bean_harvest area (Ha)_Papua Selatan
+mung bean_harvest area (Ha)_Papua Tengah
+oil palm_Area (Ha)_Papua Barat Daya
+oil palm_Area (Ha)_Papua Pegunungan
+oil palm_Area (Ha)_Papua Selatan
+oil palm_Area (Ha)_Papua Tengah
+paddy rice_harvest area (Ha)_Papua Barat Daya
+paddy rice_harvest area (Ha)_Papua Pegunungan
+paddy rice_harvest area (Ha)_Papua Selatan
+paddy rice_harvest area (Ha)_Papua Tengah
+palm_harvest area (Ha)_Papua Barat Daya
+palm_harvest area (Ha)_Papua Pegunungan
+palm_harvest area (Ha)_Papua Selatan
+palm_harvest area (Ha)_Papua Tengah
+peanut_harvest area (Ha)_Papua Barat Daya
+peanut_harvest area (Ha)_Papua Pegunungan
+peanut_harvest area (Ha)_Papua Selatan
+peanut_harvest area (Ha)_Papua Tengah
+potato_harvest area (Ha)_Papua Barat Daya
+potato_harvest area (Ha)_Papua Pegunungan
+potato_harvest area (Ha)_Papua Selatan
+potato_harvest area (Ha)_Papua Tengah
+red bean_harvest area (Ha)_Papua Barat Daya
+red bean_harvest area (Ha)_Papua Pegunungan
+red bean_harvest area (Ha)_Papua Selatan
+red bean_harvest area (Ha)_Papua Tengah
+red onion_harvest area (Ha)_Papua Barat Daya
+red onion_harvest area (Ha)_Papua Pegunungan
+red onion_harvest area (Ha)_Papua Selatan
+red onion_harvest area (Ha)_Papua Tengah
+rice_harvest area (Ha)_Papua Barat Daya
+rice_harvest area (Ha)_Papua Pegunungan
+rice_harvest area (Ha)_Papua Selatan
+rice_harvest area (Ha)_Papua Tengah
+rubber_Area (Ha)_Papua Barat Daya
+rubber_Area (Ha)_Papua Pegunungan
+rubber_Area (Ha)_Papua Selatan
+rubber_Area (Ha)_Papua Tengah
+soybean_harvest area (Ha)_Papua Barat Daya
+soybean_harvest area (Ha)_Papua Pegunungan
+soybean_harvest area (Ha)_Papua Selatan
+soybean_harvest area (Ha)_Papua Tengah
+stink bean_harvest area (Ha)_Papua Barat Daya
+stink bean_harvest area (Ha)_Papua Pegunungan
+stink bean_harvest area (Ha)_Papua Selatan
+stink bean_harvest area (Ha)_Papua Tengah
+sugarcane_Area (Ha)_Papua Barat Daya
+sugarcane_Area (Ha)_Papua Pegunungan
+sugarcane_Area (Ha)_Papua Selatan
+sugarcane_Area (Ha)_Papua Tengah
+sweet potato_harvest area (Ha)_Papua Barat Daya
+sweet potato_harvest area (Ha)_Papua Pegunungan
+sweet potato_harvest area (Ha)_Papua Selatan
+sweet potato_harvest area (Ha)_Papua Tengah
+tall coconut_Area (Ha)_Papua Barat Daya
+tall coconut_Area (Ha)_Papua Pegunungan
+tall coconut_Area (Ha)_Papua Selatan
+tall coconut_Area (Ha)_Papua Tengah
+tea_Area (Ha)_Papua Barat Daya
+tea_Area (Ha)_Papua Pegunungan
+tea_Area (Ha)_Papua Selatan
+tea_Area (Ha)_Papua Tengah
+tomato_harvest area (Ha)_Papua Barat Daya
+tomato_harvest area (Ha)_Papua Pegunungan
+tomato_harvest area (Ha)_Papua Selatan
+tomato_harvest area (Ha)_Papua Tengah
+upland rice_harvest area (Ha)_Papua Barat Daya
+upland rice_harvest area (Ha)_Papua Pegunungan
+upland rice_harvest area (Ha)_Papua Selatan
+upland rice_harvest area (Ha)_Papua Tengah
+banana_productivity(Quintal per Ha)_Papua Barat Daya
+banana_productivity(Quintal per Ha)_Papua Pegunungan
+banana_productivity(Quintal per Ha)_Papua Selatan
+banana_productivity(Quintal per Ha)_Papua Tengah
+cassava_productivity(Quintal per Ha)_Papua Barat Daya
+cassava_productivity(Quintal per Ha)_Papua Pegunungan
+cassava_productivity(Quintal per Ha)_Papua Selatan
+cassava_productivity(Quintal per Ha)_Papua Tengah
+coconut_productivity(Quintal per Ha)_Papua Barat Daya
+coconut_productivity(Quintal per Ha)_Papua Pegunungan
+coconut_productivity(Quintal per Ha)_Papua Selatan
+coconut_productivity(Quintal per Ha)_Papua Tengah
+corn_productivity(Quintal per Ha)_Papua Barat Daya
+corn_productivity(Quintal per Ha)_Papua Pegunungan
+corn_productivity(Quintal per Ha)_Papua Selatan
+corn_productivity(Quintal per Ha)_Papua Tengah
+cotton_productivity(Quintal per Ha)_Papua Barat Daya
+cotton_productivity(Quintal per Ha)_Papua Pegunungan
+cotton_productivity(Quintal per Ha)_Papua Selatan
+cotton_productivity(Quintal per Ha)_Papua Tengah
+deres coconut_productivity(Quintal per Ha)_Papua Barat Daya
+deres coconut_productivity(Quintal per Ha)_Papua Pegunungan
+deres coconut_productivity(Quintal per Ha)_Papua Selatan
+deres coconut_productivity(Quintal per Ha)_Papua Tengah
+green beans_productivity(Quintal per Ha)_Papua Barat Daya
+green beans_productivity(Quintal per Ha)_Papua Pegunungan
+green beans_productivity(Quintal per Ha)_Papua Selatan
+green beans_productivity(Quintal per Ha)_Papua Tengah
+hybrid coconut_productivity(Quintal per Ha)_Papua Barat Daya
+hybrid coconut_productivity(Quintal per Ha)_Papua Pegunungan
+hybrid coconut_productivity(Quintal per Ha)_Papua Selatan
+hybrid coconut_productivity(Quintal per Ha)_Papua Tengah
+long bean_productivity(Quintal per Ha)_Papua Barat Daya
+long bean_productivity(Quintal per Ha)_Papua Pegunungan
+long bean_productivity(Quintal per Ha)_Papua Selatan
+long bean_productivity(Quintal per Ha)_Papua Tengah
+mung bean_productivity(Quintal per Ha)_Papua Barat Daya
+mung bean_productivity(Quintal per Ha)_Papua Pegunungan
+mung bean_productivity(Quintal per Ha)_Papua Selatan
+mung bean_productivity(Quintal per Ha)_Papua Tengah
+oil palm_productivity(Quintal per Ha)_Papua Barat Daya
+oil palm_productivity(Quintal per Ha)_Papua Pegunungan
+oil palm_productivity(Quintal per Ha)_Papua Selatan
+oil palm_productivity(Quintal per Ha)_Papua Tengah
+paddy rice_productivity(Quintal per Ha)_Papua Barat Daya
+paddy rice_productivity(Quintal per Ha)_Papua Pegunungan
+paddy rice_productivity(Quintal per Ha)_Papua Selatan
+paddy rice_productivity(Quintal per Ha)_Papua Tengah
+palm_productivity(Quintal per Ha)_Papua Barat Daya
+palm_productivity(Quintal per Ha)_Papua Pegunungan
+palm_productivity(Quintal per Ha)_Papua Selatan
+palm_productivity(Quintal per Ha)_Papua Tengah
+peanut_productivity(Quintal per Ha)_Papua Barat Daya
+peanut_productivity(Quintal per Ha)_Papua Pegunungan
+peanut_productivity(Quintal per Ha)_Papua Selatan
+peanut_productivity(Quintal per Ha)_Papua Tengah
+potato_productivity(Quintal per Ha)_Papua Barat Daya
+potato_productivity(Quintal per Ha)_Papua Pegunungan
+potato_productivity(Quintal per Ha)_Papua Selatan
+potato_productivity(Quintal per Ha)_Papua Tengah
+red bean_productivity(Quintal per Ha)_Papua Barat Daya
+red bean_productivity(Quintal per Ha)_Papua Pegunungan
+red bean_productivity(Quintal per Ha)_Papua Selatan
+red bean_productivity(Quintal per Ha)_Papua Tengah
+red onion_productivity(Quintal per Ha)_Papua Barat Daya
+red onion_productivity(Quintal per Ha)_Papua Pegunungan
+red onion_productivity(Quintal per Ha)_Papua Selatan
+red onion_productivity(Quintal per Ha)_Papua Tengah
+rice_productivity(Quintal per Ha)_Papua Barat Daya
+rice_productivity(Quintal per Ha)_Papua Pegunungan
+rice_productivity(Quintal per Ha)_Papua Selatan
+rice_productivity(Quintal per Ha)_Papua Tengah
+rubber_productivity(Quintal per Ha)_Papua Barat Daya
+rubber_productivity(Quintal per Ha)_Papua Pegunungan
+rubber_productivity(Quintal per Ha)_Papua Selatan
+rubber_productivity(Quintal per Ha)_Papua Tengah
+soybean_productivity(Quintal per Ha)_Papua Barat Daya
+soybean_productivity(Quintal per Ha)_Papua Pegunungan
+soybean_productivity(Quintal per Ha)_Papua Selatan
+soybean_productivity(Quintal per Ha)_Papua Tengah
+stink bean_productivity(Quintal per Ha)_Papua Barat Daya
+stink bean_productivity(Quintal per Ha)_Papua Pegunungan
+stink bean_productivity(Quintal per Ha)_Papua Selatan
+stink bean_productivity(Quintal per Ha)_Papua Tengah
+sugarcane_productivity(Quintal per Ha)_Papua Barat Daya
+sugarcane_productivity(Quintal per Ha)_Papua Pegunungan
+sugarcane_productivity(Quintal per Ha)_Papua Selatan
+sugarcane_productivity(Quintal per Ha)_Papua Tengah
+sweet potato_productivity(Quintal per Ha)_Papua Barat Daya
+sweet potato_productivity(Quintal per Ha)_Papua Pegunungan
+sweet potato_productivity(Quintal per Ha)_Papua Selatan
+sweet potato_productivity(Quintal per Ha)_Papua Tengah
+tall coconut_productivity(Quintal per Ha)_Papua Barat Daya
+tall coconut_productivity(Quintal per Ha)_Papua Pegunungan
+tall coconut_productivity(Quintal per Ha)_Papua Selatan
+tall coconut_productivity(Quintal per Ha)_Papua Tengah
+tea_productivity(Quintal per Ha)_Papua Barat Daya
+tea_productivity(Quintal per Ha)_Papua Pegunungan
+tea_productivity(Quintal per Ha)_Papua Selatan
+tea_productivity(Quintal per Ha)_Papua Tengah
+tomato_productivity(Quintal per Ha)_Papua Barat Daya
+tomato_productivity(Quintal per Ha)_Papua Pegunungan
+tomato_productivity(Quintal per Ha)_Papua Selatan
+tomato_productivity(Quintal per Ha)_Papua Tengah
+upland rice_productivity(Quintal per Ha)_Papua Barat Daya
+upland rice_productivity(Quintal per Ha)_Papua Pegunungan
+upland rice_productivity(Quintal per Ha)_Papua Selatan
+upland rice_productivity(Quintal per Ha)_Papua Tengah

@@ -43,7 +43,7 @@ def input_gen(filepath, indicator ="LUAS PANEN",subsection="Tanaman Pangan", lev
         df.to_excel(download_path,index=False)
 
 #
-input_gen(os.path.join(os.getcwd(),'dict','plantation.txt'), indicator="PRODUKSI",subsection="Perkebunan") #"Perkebunan"
+input_gen(os.path.join(os.getcwd(),'dict','horticulture.txt'), indicator="PRODUKTIVITAS",subsection="Hortikultura") #"Perkebunan" Tanaman Pangan(food) # Hortikultura(horticulture)
 
 
 

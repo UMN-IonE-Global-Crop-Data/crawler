@@ -13,7 +13,7 @@ class Service:
             "LUAS PANEN": "harvest area (Ha)",
             "LUAS AREAL": "Area (Ha)",
             "PRODUKSI": "production (Ton)",
-            "PRODUKTIVITAS": "productivity (Quintal/Ha)"
+            "PRODUKTIVITAS": "productivity(Quintal per Ha)"
         }
     
         filepath = os.path.join(os.getcwd(),'dict','Ind to Eng.txt')
@@ -29,6 +29,7 @@ class Service:
         
         if self.dic["Level"] == "Kabupaten":
             file_name = f"{self.crop_name.get(self.dic['Crop'])}_{self.indicator_eng.get(self.dic['Indicator'])}_{self.dic['Province']}.xlsx"
+            print(file_name)
             new_craw = DistrictCrawler(self.dic)
             df = new_craw.crawling()
         else:
@@ -37,6 +38,7 @@ class Service:
             df = new_craw.crawling()
 
         download_path = os.path.join(os.getcwd(),'downloads',file_name)
+        print(download_path)
         df.to_excel(download_path,index=False)
    
     

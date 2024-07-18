@@ -8,11 +8,11 @@ import pandas as pd
 
 ####改这里的位置"area","production","harvest area"
 #注意因为rearranged下你写了两个名字,没有harvest. 所以你需要这里也修改一下
-input = "area"
+input = "productivity"
 # Load the original Excel file
 folder_path = os.path.join(os.getcwd(),"wide cleaned",input)
 # set output path
-output_path = os.path.join(os.getcwd(),"rearranged","cleaned",input)
+output_path = os.path.join(os.getcwd(),"long cleaned",input)
 #list storing the empty files' name
 empty_list = []
 
@@ -55,7 +55,7 @@ for file in os.listdir(folder_path):
 
     long_format_data.insert(2,"Cropnm",parts[0])
     long_format_data.insert(0,"Province",parts[2])
-    long_format_data.rename(columns = {"Lokasi":"Location(Lokasi)","area": "Area(Ha)","production":"Production(Ton)"}, inplace=True)
+    long_format_data.rename(columns = {"Lokasi":"Location(Lokasi)","area": "Area(Ha)","production":"Production(Ton)","productivity":"Productivity(Quintal/Ha)"}, inplace=True)
 
     # Save the transformed data to a new Excel file
     new_file_path = os.path.join(output_path, file)
